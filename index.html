@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Mock Exam – HPGD1103 Pembangunan Kurikulum</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   CSS VARIABLES — DARK (default) + LIGHT overrides
+══════════════════════════════════════════════════════════════════ */
+:root {
+  --bg:        #0d1117;
+  --bg2:       #161b27;
+  --bg3:       #1c2333;
+  --card:      #1a2035;
+  --card2:     #111827;
+  --border:    #2a3550;
+  --text:      #e8edf5;
+  --text2:     #c4cedf;
+  --muted:     #7b8fad;
+  --blue:      #3b82f6;
+  --blue2:     #60a5fa;
+  --indigo:    #818cf8;
+  --purple:    #a78bfa;
+  --teal:      #2dd4bf;
+  --green:     #34d399;
+  --green2:    #6ee7b7;
+  --amber:     #fbbf24;
+  --amber2:    #fcd34d;
+  --rose:      #fb7185;
+  --rose2:     #fca5a5;
+  --gold:      #f59e0b;
+  /* topic pastel chips — dark variants */
+  --t1: #7c3aed; --t1b: rgba(124,58,237,0.15);
+  --t2: #0891b2; --t2b: rgba(8,145,178,0.15);
+  --t3: #059669; --t3b: rgba(5,150,105,0.15);
+  --t4: #d97706; --t4b: rgba(217,119,6,0.15);
+  --t5: #db2777; --t5b: rgba(219,39,119,0.15);
+  --t6: #2563eb; --t6b: rgba(37,99,235,0.15);
+  --t7: #7c3aed; --t7b: rgba(124,58,237,0.15);
+  --t8: #0891b2; --t8b: rgba(8,145,178,0.15);
+  --t9: #059669; --t9b: rgba(5,150,105,0.15);
+  --t10:#d97706; --t10b:rgba(217,119,6,0.15);
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+[data-theme="light"] {
+  --bg:        #f5f7ff;
+  --bg2:       #eef1fb;
+  --bg3:       #e6eaf8;
+  --card:      #ffffff;
+  --card2:     #f8faff;
+  --border:    #dde3f5;
+  --text:      #1a2035;
+  --text2:     #3d4f6e;
+  --muted:     #7b8fad;
+  --blue:      #2563eb;
+  --blue2:     #1d4ed8;
+  --indigo:    #4f46e5;
+  --purple:    #7c3aed;
+  --teal:      #0d9488;
+  --green:     #059669;
+  --green2:    #047857;
+  --amber:     #d97706;
+  --amber2:    #b45309;
+  --rose:      #e11d48;
+  --rose2:     #be123c;
+  --gold:      #d97706;
+  --t1: #7c3aed; --t1b: rgba(124,58,237,0.1);
+  --t2: #0891b2; --t2b: rgba(8,145,178,0.1);
+  --t3: #059669; --t3b: rgba(5,150,105,0.1);
+  --t4: #d97706; --t4b: rgba(217,119,6,0.1);
+  --t5: #db2777; --t5b: rgba(219,39,119,0.1);
+  --t6: #2563eb; --t6b: rgba(37,99,235,0.1);
+  --t7: #7c3aed; --t7b: rgba(124,58,237,0.1);
+  --t8: #0891b2; --t8b: rgba(8,145,178,0.1);
+  --t9: #059669; --t9b: rgba(5,150,105,0.1);
+  --t10:#d97706; --t10b:rgba(217,119,6,0.1);
+  --shadow: 0 4px 24px rgba(37,99,235,0.08);
+  --shadow-sm: 0 2px 10px rgba(37,99,235,0.06);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROFILE MODAL
+══════════════════════════════════════════════════════════════════ */
+#profileModal .modal-box { max-width: 380px; }
+.profile-avatar-row {
+  display: flex; justify-content: center; margin-bottom: 18px;
+}
+.avatar-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  margin: 12px 0 18px;
+}
+.avatar-opt {
+  width: 44px; height: 44px; border-radius: 12px;
+  font-size: 1.4rem; display: flex; align-items: center; justify-content: center;
+  background: var(--card2); border: 2px solid var(--border);
+  cursor: pointer; transition: all 0.18s; touch-action: manipulation;
+}
+.avatar-opt:hover { border-color: var(--indigo); transform: scale(1.1); }
+.avatar-opt.selected { border-color: var(--indigo); background: rgba(129,140,248,0.15); box-shadow: 0 0 0 3px rgba(129,140,248,0.2); }
+
+.profile-input {
+  width: 100%; padding: 12px 14px;
+  background: var(--card2); border: 1.5px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  outline: none; transition: border-color 0.2s;
+  margin-bottom: 14px;
+}
+.profile-input:focus { border-color: var(--indigo); }
+.profile-input::placeholder { color: var(--muted); font-weight: 400; }
+
+.profile-input-label {
+  font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; display: block;
+}
+
+/* User chip in landing header */
+.user-chip {
+  display: none; align-items: center; gap: 7px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 99px; padding: 5px 12px 5px 8px;
+  font-size: 0.78rem; font-weight: 700; color: var(--text2);
+  cursor: pointer; transition: border-color 0.2s;
+  animation: fadeUp 0.4s ease;
+}
+.user-chip.show { display: flex; }
+.user-chip:hover { border-color: var(--indigo); color: var(--indigo); }
+.user-chip-avatar { font-size: 1.1rem; }
+
+
+
+
+
+/* New personal-best toast */
+.toast.pb-toast { background: linear-gradient(135deg, var(--gold), #f97316); }
+
+/* ══════════════════════════════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+button {
+  -webkit-appearance: none; appearance: none;
+  font-family: inherit;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none; user-select: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SCREEN SYSTEM
+══════════════════════════════════════════════════════════════════ */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ══════════════════════════════════════════════════════════════════
+   THEME TOGGLE — fixed top-right
+══════════════════════════════════════════════════════════════════ */
+.theme-btn {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top, 14px));
+  right: max(16px, env(safe-area-inset-right, 16px));
+  z-index: 9999;
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 13px 7px 9px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--text2);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.theme-btn:hover { border-color: var(--indigo); transform: translateY(-1px); }
+.theme-btn:active { transform: scale(0.97); }
+.tb-track { width: 34px; height: 19px; background: var(--border); border-radius: 99px; position: relative; transition: background 0.3s; flex-shrink: 0; }
+[data-theme="light"] .tb-track { background: var(--indigo); }
+.tb-thumb { width: 13px; height: 13px; border-radius: 50%; background: var(--muted); position: absolute; top: 3px; left: 3px; transition: transform 0.3s, background 0.3s; }
+[data-theme="light"] .tb-thumb { transform: translateX(15px); background: #fff; }
+
+/* ══════════════════════════════════════════════════════════════════
+   MODE BADGE (exam / practice)
+══════════════════════════════════════════════════════════════════ */
+.mode-badge {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top, 14px));
+  left: max(16px, env(safe-area-inset-left, 16px));
+  z-index: 9999;
+  display: none;
+  align-items: center; gap: 6px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  border: 1.5px solid;
+}
+.mode-badge.show { display: flex; }
+.mode-badge.exam     { background: rgba(251,191,36,0.12); border-color: var(--amber); color: var(--amber); }
+.mode-badge.practice { background: rgba(52,211,153,0.12); border-color: var(--green); color: var(--green); }
+
+/* ══════════════════════════════════════════════════════════════════
+   LANDING SCREEN
+══════════════════════════════════════════════════════════════════ */
+#screen-landing {
+  min-height: 100vh; min-height: -webkit-fill-available;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 60px 20px 40px;
+  position: relative; overflow: hidden;
+}
+#screen-landing.active { display: flex; }
+
+/* animated gradient mesh bg */
+#screen-landing::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 25%, rgba(129,140,248,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(45,212,191,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 10%,  rgba(251,191,36,0.08) 0%, transparent 50%);
+  animation: meshMove 8s ease-in-out infinite alternate;
+}
+@keyframes meshMove {
+  from { transform: scale(1) translate(0,0); }
+  to   { transform: scale(1.05) translate(-10px, 8px); }
+}
+
+/* dot grid */
+#screen-landing::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+[data-theme="light"] #screen-landing::after {
+  background-image: radial-gradient(circle, rgba(99,102,241,0.08) 1px, transparent 1px);
+}
+
+.landing-inner {
+  position: relative; z-index: 1;
+  max-width: 600px; width: 100%;
+  text-align: center;
+}
+
+/* Attempt history strip */
+.history-strip {
+  display: none;
+  align-items: center; justify-content: center; gap: 8px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-size: 0.75rem; color: var(--muted);
+  margin-bottom: 20px;
+  animation: fadeUp 0.4s ease;
+}
+.history-strip.show { display: flex; }
+.history-strip .hs-score {
+  font-weight: 800; color: var(--indigo);
+  display: flex; align-items: center; gap: 4px;
+}
+.history-strip .hs-arrow { color: var(--green); font-size: 0.8rem; }
+
+.exam-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(129,140,248,0.12);
+  border: 1px solid rgba(129,140,248,0.35);
+  border-radius: 99px;
+  padding: 5px 16px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--indigo);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeUp 0.4s ease 0.1s both;
+}
+
+.landing-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 6px;
+  animation: fadeUp 0.4s ease 0.15s both;
+}
+.landing-title em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--indigo), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.landing-sub {
+  font-size: 0.95rem; color: var(--muted);
+  margin-bottom: 32px;
+  animation: fadeUp 0.4s ease 0.2s both;
+}
+
+/* Info pills */
+.info-row {
+  display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 28px;
+  animation: fadeUp 0.4s ease 0.25s both;
+}
+.info-pill {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.info-pill .ip-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; line-height: 1;
+  color: var(--amber);
+}
+.info-pill .ip-lbl { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Mode selector */
+.mode-selector {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 24px;
+  animation: fadeUp 0.4s ease 0.3s both;
+}
+.mode-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  cursor: pointer; text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  touch-action: manipulation;
+  -webkit-user-select: none; user-select: none;
+}
+.mode-card:hover   { transform: translateY(-2px); box-shadow: var(--shadow); }
+.mode-card:active  { transform: scale(0.98); }
+.mode-card.selected {
+  border-color: var(--indigo);
+  background: rgba(129,140,248,0.08);
+  box-shadow: 0 0 0 3px rgba(129,140,248,0.2);
+}
+.mode-card .mc-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.mode-card .mc-title { font-size: 0.88rem; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+.mode-card .mc-desc  { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+.mode-card .mc-tag {
+  display: inline-flex; align-items: center;
+  font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px;
+  margin-top: 8px;
+}
+.mode-card.exam-mode .mc-tag     { background: rgba(251,191,36,0.15); color: var(--amber); }
+.mode-card.practice-mode .mc-tag { background: rgba(52,211,153,0.15); color: var(--green); }
+
+/* Rules box */
+.rules-box {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  text-align: left;
+  margin-bottom: 24px;
+  animation: fadeUp 0.4s ease 0.35s both;
+}
+.rules-box h3 { font-size: 0.72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.rules-box ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.rules-box li { font-size: 0.85rem; color: var(--text2); display: flex; align-items: flex-start; gap: 9px; }
+.rules-box li::before { content: '›'; color: var(--indigo); font-weight: 800; flex-shrink: 0; }
+
+/* Start button */
+.btn-start {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, var(--indigo), #6366f1);
+  color: #fff; border: none;
+  border-radius: var(--radius);
+  font-size: 1rem; font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.4s ease 0.4s both;
+  position: relative; overflow: hidden;
+}
+.btn-start::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+}
+.btn-start:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(99,102,241,0.5); }
+.btn-start:active { transform: scale(0.99); }
+
+/* ══════════════════════════════════════════════════════════════════
+   EXAM SCREEN — HEADER
+══════════════════════════════════════════════════════════════════ */
+#screen-exam { display: none; }
+#screen-exam.active { display: block; }
+
+.exam-header {
+  position: -webkit-sticky; position: sticky; top: 0; z-index: 100;
+  background: rgba(13,17,23,0.95);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  transition: background 0.3s;
+}
+[data-theme="light"] .exam-header { background: rgba(245,247,255,0.96); }
+
+.exam-header-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 58px; gap: 12px;
+}
+
+.exam-title-bar {
+  font-family: 'DM Serif Display', serif;
+  font-size: 0.95rem; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Timer */
+.timer-wrap {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 13px;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+#timerDisplay {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--amber);
+  letter-spacing: 0.04em; min-width: 68px; text-align: right;
+}
+#timerDisplay.warning {
+  color: var(--rose);
+  animation: timerShake 0.5s ease infinite, timerGlow 1s ease-in-out infinite;
+}
+@keyframes timerShake {
+  0%,100%{ transform: translateX(0); }
+  20%{ transform: translateX(-2px); }
+  40%{ transform: translateX(2px); }
+  60%{ transform: translateX(-2px); }
+  80%{ transform: translateX(1px); }
+}
+@keyframes timerGlow {
+  0%,100% { text-shadow: none; }
+  50%     { text-shadow: 0 0 12px rgba(251,113,133,0.6); }
+}
+
+/* Progress bar */
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--teal)); transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+
+/* ══════════════════════════════════════════════════════════════════
+   EXAM BODY
+══════════════════════════════════════════════════════════════════ */
+.exam-body {
+  max-width: 860px; margin: 0 auto;
+  padding: 24px 20px 130px;
+}
+
+/* Question navigator */
+.q-navigator {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.q-nav-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.q-nav-label { font-size: 0.7rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.q-nav-legend { display: flex; gap: 10px; }
+.q-nav-legend span { font-size: 0.65rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+.q-nav-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-answered { background: var(--green); }
+.dot-current  { background: var(--amber); }
+.dot-empty    { background: var(--border); }
+
+.q-nav-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+.q-dot {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--card2);
+  font-size: 0.65rem; font-weight: 800; color: var(--muted);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s;
+  touch-action: manipulation;
+  -webkit-user-select: none; user-select: none;
+}
+.q-dot:hover   { border-color: var(--indigo); color: var(--indigo); }
+.q-dot.answered { background: rgba(52,211,153,0.12); border-color: var(--green); color: var(--green2); }
+.q-dot.current  { border-color: var(--amber); color: var(--amber); background: rgba(251,191,36,0.1); }
+.q-dot.answered.current { border-color: var(--amber); }
+
+/* ══════════════════════════════════════════════════════════════════
+   QUESTION CARD
+══════════════════════════════════════════════════════════════════ */
+.q-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.question-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 26px;
+  margin-bottom: 14px;
+  display: none;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--border);
+}
+.question-card.visible {
+  display: block;
+  animation: slideInRight 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.question-card.slide-out-left  { animation: slideOutLeft  0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.question-card.slide-out-right { animation: slideOutRight 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.question-card.slide-in-left   { animation: slideInLeft   0.25s cubic-bezier(0.4,0,0.2,1); }
+.question-card.slide-in-right  { animation: slideInRight  0.25s cubic-bezier(0.4,0,0.2,1); }
+
+@keyframes slideInRight  { from { opacity:0; transform:translateX(40px); }  to { opacity:1; transform:translateX(0); } }
+@keyframes slideInLeft   { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideOutLeft  { from { opacity:1; transform:translateX(0); }  to { opacity:0; transform:translateX(-40px); } }
+@keyframes slideOutRight { from { opacity:1; transform:translateX(0); }  to { opacity:0; transform:translateX(40px); } }
+@keyframes fadeUp        { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+/* Topic-coloured left border */
+.question-card[data-topic="0"] { border-left-color: var(--t1); }
+.question-card[data-topic="1"] { border-left-color: var(--t2); }
+.question-card[data-topic="2"] { border-left-color: var(--t3); }
+.question-card[data-topic="3"] { border-left-color: var(--t4); }
+.question-card[data-topic="4"] { border-left-color: var(--t5); }
+.question-card[data-topic="5"] { border-left-color: var(--t6); }
+.question-card[data-topic="6"] { border-left-color: var(--t7); }
+.question-card[data-topic="7"] { border-left-color: var(--t8); }
+.question-card[data-topic="8"] { border-left-color: var(--t9); }
+.question-card[data-topic="9"] { border-left-color: var(--t10); }
+
+.q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.q-num  {
+  background: linear-gradient(135deg, var(--indigo), #6366f1);
+  color: #fff; font-size: 0.7rem; font-weight: 800;
+  padding: 3px 10px; border-radius: 6px; letter-spacing: 0.04em;
+}
+.q-topic-chip {
+  font-size: 0.7rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--muted); background: var(--card2);
+}
+.q-type-chip {
+  margin-left: auto;
+  font-size: 0.62rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 3px 8px; border-radius: 5px;
+}
+.q-type-chip.recall   { background: rgba(129,140,248,0.15); color: var(--indigo); }
+.q-type-chip.scenario { background: rgba(251,191,36,0.15);  color: var(--amber); }
+.q-type-chip.critical { background: rgba(251,113,133,0.15); color: var(--rose); }
+
+.q-text {
+  font-size: 1rem; font-weight: 500;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+/* Option items */
+.options-list { display: flex; flex-direction: column; gap: 9px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s, transform 0.15s, box-shadow 0.18s;
+  touch-action: manipulation;
+  -webkit-user-select: none; user-select: none;
+  position: relative; overflow: hidden;
+}
+.option-item:hover {
+  border-color: var(--indigo);
+  background: rgba(129,140,248,0.06);
+}
+.option-item:active { transform: scale(0.99); }
+
+.option-item.selected {
+  border-color: var(--indigo);
+  background: rgba(129,140,248,0.1);
+  box-shadow: 0 0 0 3px rgba(129,140,248,0.15);
+}
+.option-item.selected .option-letter {
+  background: var(--indigo); color: #fff;
+  transform: scale(1.15);
+}
+/* ripple */
+.option-item .ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(129,140,248,0.25);
+  transform: scale(0); animation: rippleAnim 0.5s linear;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+.option-letter {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: var(--border); color: var(--muted);
+  font-size: 0.75rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.option-text { font-size: 0.9rem; color: var(--text2); line-height: 1.5; padding-top: 2px; }
+
+/* Practice mode — immediate feedback styles */
+.option-item.practice-correct {
+  border-color: var(--green); background: rgba(52,211,153,0.1);
+  animation: correctPop 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.option-item.practice-wrong {
+  border-color: var(--rose); background: rgba(251,113,133,0.1);
+  animation: wrongShake 0.4s ease;
+}
+.option-item.practice-correct .option-letter { background: var(--green); color: #fff; }
+.option-item.practice-wrong   .option-letter { background: var(--rose);  color: #fff; }
+.option-item.practice-show-correct { border-color: var(--green); background: rgba(52,211,153,0.06); }
+.option-item.practice-show-correct .option-letter { background: var(--green); color: #fff; }
+
+@keyframes correctPop  {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+@keyframes wrongShake  {
+  0%,100%{ transform: translateX(0); }
+  25%{ transform: translateX(-6px); }
+  75%{ transform: translateX(6px); }
+}
+
+/* Practice explanation inline */
+.practice-inline-explain {
+  display: none;
+  margin-top: 14px;
+  background: var(--card2);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 10px 10px 0;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+  animation: fadeUp 0.3s ease;
+}
+.practice-inline-explain.show { display: block; }
+.practice-inline-explain strong { color: var(--blue2); }
+
+/* Confidence picker */
+.confidence-row {
+  display: none;
+  align-items: center; gap: 8px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.3s ease;
+}
+.confidence-row.show { display: flex; }
+.conf-label { font-size: 0.75rem; color: var(--muted); font-weight: 600; flex-shrink: 0; }
+.conf-btns  { display: flex; gap: 6px; flex-wrap: wrap; }
+.conf-btn {
+  padding: 4px 12px; border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--card2);
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--muted);
+  transition: all 0.18s;
+  touch-action: manipulation;
+}
+.conf-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+.conf-btn.selected { border-color: var(--indigo); background: rgba(129,140,248,0.15); color: var(--indigo); }
+
+/* Nav buttons */
+.q-nav-buttons {
+  display: flex; gap: 10px; justify-content: space-between;
+  margin-top: 4px;
+}
+.btn-nav {
+  padding: 10px 20px; border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--card); color: var(--text2);
+  font-size: 0.85rem; font-weight: 700;
+  transition: all 0.18s;
+  touch-action: manipulation;
+}
+.btn-nav:hover:not(:disabled) { border-color: var(--indigo); color: var(--indigo); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ══════════════════════════════════════════════════════════════════
+   EXAM FOOTER
+══════════════════════════════════════════════════════════════════ */
+.exam-footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(13,17,23,0.97);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0));
+  padding-left: max(20px, env(safe-area-inset-left, 20px));
+  padding-right: max(20px, env(safe-area-inset-right, 20px));
+  transition: background 0.3s;
+}
+[data-theme="light"] .exam-footer { background: rgba(245,247,255,0.98); }
+
+.exam-footer-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.footer-left { display: flex; flex-direction: column; gap: 2px; }
+.answered-count { font-size: 0.8rem; color: var(--muted); }
+.answered-count strong { color: var(--green2); font-weight: 800; }
+.footer-progress-text { font-size: 0.7rem; color: var(--muted); }
+
+.btn-submit {
+  padding: 11px 26px;
+  background: linear-gradient(135deg, var(--amber), #d97706);
+  color: #1a0a00; border: none;
+  border-radius: 10px;
+  font-size: 0.88rem; font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(251,191,36,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  touch-action: manipulation;
+}
+.btn-submit:hover  { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(251,191,36,0.45); }
+.btn-submit:active { transform: scale(0.98); }
+
+/* Toast notifications */
+.toast-container {
+  position: fixed; bottom: 80px; left: 50%; z-index: 9998;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 20px;
+  font-size: 0.82rem; font-weight: 700; color: var(--text);
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+  animation: toastIn 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.toast.fade-out { animation: toastOut 0.3s ease forwards; }
+@keyframes toastIn  { from { opacity:0; transform:translateY(16px) scale(0.95); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes toastOut { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-10px); } }
+
+/* ══════════════════════════════════════════════════════════════════
+   SUBMIT MODAL
+══════════════════════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,0.65);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px; max-width: 420px; width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow);
+  animation: modalIn 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes modalIn { from{opacity:0;transform:scale(0.93)} to{opacity:1;transform:scale(1)} }
+.modal-icon { font-size: 2.4rem; margin-bottom: 14px; }
+.modal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 7px; }
+.modal-desc  { font-size: 0.88rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+.modal-warn  {
+  background: rgba(251,113,133,0.08); border: 1px solid rgba(251,113,133,0.25);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 0.8rem; color: var(--rose);
+  margin-bottom: 18px; display: none;
+}
+.modal-btns { display: flex; gap: 10px; }
+.btn-cancel {
+  flex: 1; padding: 12px;
+  background: var(--card2); border: 1.5px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-size: 0.88rem; font-weight: 700;
+  transition: border-color 0.18s;
+  touch-action: manipulation;
+}
+.btn-cancel:hover { border-color: var(--indigo); }
+.btn-confirm {
+  flex: 1; padding: 12px;
+  background: linear-gradient(135deg, var(--amber), #d97706);
+  border: none; border-radius: 10px; color: #1a0a00;
+  font-size: 0.88rem; font-weight: 800;
+  transition: transform 0.15s;
+  touch-action: manipulation;
+}
+.btn-confirm:hover { transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════════════════════════════
+   RESULTS SCREEN
+══════════════════════════════════════════════════════════════════ */
+#screen-results { display: none; }
+#screen-results.active { display: block; }
+
+.results-hero {
+  background: linear-gradient(160deg, var(--bg2), var(--bg3));
+  border-bottom: 1px solid var(--border);
+  padding: 48px 20px 32px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.results-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.18) 0%, transparent 70%);
+}
+.results-hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+.results-tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--amber); background: rgba(251,191,36,0.1);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 99px; padding: 4px 14px; margin-bottom: 14px;
+}
+.results-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem,4vw,2.4rem); color: var(--text); margin-bottom: 5px; }
+.results-sub   { font-size: 0.88rem; color: var(--muted); margin-bottom: 28px; }
+
+/* Grade badge */
+.grade-badge-wrap { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+.grade-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 28px; border-radius: 99px;
+  border: 2px solid; font-size: 1.1rem; font-weight: 800;
+  animation: badgePop 0.6s cubic-bezier(0.4,0,0.2,1) 0.3s both;
+}
+@keyframes badgePop { 0%{opacity:0;transform:scale(0.6)} 70%{transform:scale(1.05)} 100%{opacity:1;transform:scale(1)} }
+.grade-badge.pakar    { background:rgba(251,191,36,0.15); border-color:var(--amber); color:var(--amber); }
+.grade-badge.cemerlang{ background:rgba(129,140,248,0.15); border-color:var(--indigo); color:var(--indigo); }
+.grade-badge.baik     { background:rgba(52,211,153,0.15); border-color:var(--green); color:var(--green); }
+.grade-badge.lulus    { background:rgba(45,212,191,0.15); border-color:var(--teal); color:var(--teal); }
+.grade-badge.cuba     { background:rgba(148,163,184,0.15); border-color:var(--muted); color:var(--muted); }
+
+/* Score ring */
+.score-section { display:flex; flex-direction:column; align-items:center; margin-bottom: 20px; }
+.score-ring {
+  width: 130px; height: 130px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; margin-bottom: 10px;
+}
+@supports (background: conic-gradient(red 0%, blue 100%)) {
+  .score-ring::before {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(var(--ring-color, var(--green)) var(--pct, 0%), var(--border) 0%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 9px), #000 calc(100% - 9px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 9px), #000 calc(100% - 9px));
+  }
+}
+@supports not (background: conic-gradient(red 0%, blue 100%)) {
+  .score-ring::before {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    border: 9px solid var(--ring-color, var(--green)); box-sizing: border-box;
+  }
+}
+.score-num    { font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--text); line-height: 1; }
+.score-denom  { font-size: 0.75rem; color: var(--muted); }
+
+/* Stats */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 10px; max-width: 500px; margin: 0 auto 24px;
+}
+.stat-box {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 10px; text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 1.7rem; line-height: 1; }
+.stat-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+
+/* Topic mastery chart */
+.mastery-section {
+  max-width: 600px; margin: 0 auto 28px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.mastery-title {
+  font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 14px;
+}
+.mastery-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.mastery-label { font-size: 0.72rem; font-weight: 700; color: var(--text2); width: 120px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mastery-bar-wrap { flex: 1; height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.mastery-bar-fill { height: 100%; border-radius: 99px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.mastery-pct { font-size: 0.72rem; font-weight: 800; width: 36px; text-align: right; flex-shrink: 0; }
+
+/* Streak banner */
+.streak-banner {
+  display: none;
+  align-items: center; justify-content: center; gap: 10px;
+  max-width: 500px; margin: 0 auto 16px;
+  background: rgba(251,191,36,0.1);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 12px; padding: 12px 20px;
+  animation: fadeUp 0.4s ease;
+}
+.streak-banner.show { display: flex; }
+.streak-banner .sb-icon { font-size: 1.5rem; }
+.streak-banner .sb-text { font-size: 0.85rem; font-weight: 700; color: var(--amber); }
+
+/* Blind spot banner */
+.blindspot-banner {
+  display: none;
+  align-items: flex-start; gap: 10px;
+  max-width: 500px; margin: 0 auto 16px;
+  background: rgba(251,113,133,0.08);
+  border: 1px solid rgba(251,113,133,0.25);
+  border-radius: 12px; padding: 12px 16px;
+  animation: fadeUp 0.4s ease;
+}
+.blindspot-banner.show { display: flex; }
+.blindspot-banner .bs-title { font-size: 0.8rem; font-weight: 800; color: var(--rose); margin-bottom: 4px; }
+.blindspot-banner .bs-list  { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+/* Result action buttons */
+.results-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom: 32px; }
+.btn-retake, .btn-review, .btn-weak, .btn-home {
+  padding: 11px 22px; border-radius: 10px;
+  font-size: 0.88rem; font-weight: 800;
+  cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0.02em; touch-action: manipulation;
+}
+.btn-retake { background:linear-gradient(135deg,var(--indigo),#6366f1); color:#fff; border:none; box-shadow:0 4px 16px rgba(99,102,241,0.35); }
+.btn-retake:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(99,102,241,0.5); }
+.btn-review { background:var(--card); color:var(--text2); border:1.5px solid var(--border); }
+.btn-review:hover { border-color:var(--indigo); color:var(--indigo); }
+.btn-weak { background:rgba(251,113,133,0.12); color:var(--rose); border:1.5px solid rgba(251,113,133,0.3); }
+.btn-weak:hover { background:rgba(251,113,133,0.2); }
+.btn-home { background:var(--card); color:var(--muted); border:1.5px solid var(--border); }
+.btn-home:hover { border-color:var(--teal); color:var(--teal); }
+
+/* Home button in exam footer */
+.btn-home-footer {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 14px; border-radius: 8px;
+  font-size: 0.78rem; font-weight: 800;
+  background: var(--card2); color: var(--muted);
+  border: 1.5px solid var(--border);
+  cursor: pointer; transition: all 0.2s;
+  touch-action: manipulation; flex-shrink: 0;
+}
+.btn-home-footer:hover { border-color:var(--teal); color:var(--teal); }
+
+/* Home confirm modal */
+#homeModal .modal-icon { font-size: 2rem; }
+
+
+/* Review section */
+.review-section { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+.review-section h2 { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--text); margin-bottom:16px; padding-top:8px; }
+
+.review-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px; margin-bottom: 12px;
+  border-left: 4px solid var(--border);
+  animation: fadeUp 0.3s ease;
+  position: relative;
+}
+.review-card.correct   { border-left-color: var(--green); }
+.review-card.incorrect { border-left-color: var(--rose); }
+.review-card.skipped   { border-left-color: var(--muted); }
+
+/* Blind-spot marker */
+.blind-spot-tag {
+  position: absolute; top: 16px; right: 16px;
+  font-size: 0.62rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(251,113,133,0.15); color: var(--rose);
+  border: 1px solid rgba(251,113,133,0.3);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+.review-top { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+.review-status {
+  font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 3px 10px; border-radius: 5px;
+}
+.review-status.correct   { background:rgba(52,211,153,0.12); color:var(--green2); }
+.review-status.incorrect { background:rgba(251,113,133,0.12); color:var(--rose2); }
+.review-status.skipped   { background:rgba(148,163,184,0.12); color:var(--muted); }
+.review-qnum { font-size:0.72rem; color:var(--muted); font-weight:700; }
+.conf-tag {
+  font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;
+  background: rgba(129,140,248,0.12); color: var(--indigo);
+}
+
+.review-q-text { font-size:0.9rem; font-weight:500; color:var(--text); margin-bottom:12px; line-height:1.6; }
+.review-options { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; }
+.review-opt {
+  display:flex; align-items:flex-start; gap:9px;
+  padding:8px 12px; border-radius:8px;
+  background:var(--card2); border:1px solid var(--border);
+  font-size:0.83rem;
+}
+.review-opt.is-correct { background:rgba(52,211,153,0.08); border-color:var(--green); animation: correctPop 0.4s ease; }
+.review-opt.is-wrong   { background:rgba(251,113,133,0.08); border-color:var(--rose); }
+.review-opt .opt-l {
+  font-size:0.68rem; font-weight:800; width:22px; height:22px; border-radius:5px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  background:var(--border); color:var(--muted);
+}
+.review-opt.is-correct .opt-l { background:var(--green); color:#fff; }
+.review-opt.is-wrong   .opt-l { background:var(--rose);  color:#fff; }
+.review-opt .opt-t { color:var(--text2); line-height:1.45; padding-top:1px; }
+
+.explanation-box {
+  background:var(--card2); border-left:3px solid var(--blue);
+  border-radius:0 8px 8px 0; padding:10px 14px;
+  font-size:0.8rem; color:var(--muted); line-height:1.6;
+}
+.explanation-box strong { color:var(--blue2); }
+
+/* ══════════════════════════════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════════════════════════════ */
+.confetti-wrap {
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none; overflow: hidden;
+}
+.confetti-piece {
+  position: absolute; top: -10px;
+  width: 8px; height: 14px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+  opacity: 0;
+}
+@keyframes confettiFall {
+  0%   { opacity:1; transform:translateY(0) rotate(0deg) translateX(0); }
+  100% { opacity:0; transform:translateY(100vh) rotate(720deg) translateX(var(--dx,0px)); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .info-row { gap: 8px; }
+  .info-pill { padding: 8px 12px; }
+  .question-card { padding: 18px; }
+  .exam-footer-inner { gap: 8px; }
+  .exam-title-bar { display: none; }
+  .results-actions { flex-direction: column; align-items: stretch; }
+  .btn-retake,.btn-review,.btn-weak { text-align: center; }
+  .mastery-label { width: 80px; font-size: 0.65rem; }
+  .mode-selector { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 380px) {
+  .mode-selector { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- THEME TOGGLE — always visible -->
+<button type="button" class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">
+  <div class="tb-track"><div class="tb-thumb"></div></div>
+  <span id="themeIcon">🌙</span>
+  <span id="themeLabel">Dark</span>
+</button>
+
+<!-- MODE BADGE — shows during exam -->
+<div class="mode-badge" id="modeBadge"></div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- CONFETTI WRAPPER -->
+<div class="confetti-wrap" id="confettiWrap"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PROFILE MODAL
+═══════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="profileModal">
+  <div class="modal-box" id="profileModalBox">
+    <div class="modal-icon">👤</div>
+    <div class="modal-title" id="profileModalTitle">Buat Profil Anda</div>
+    <div class="modal-desc">Masukkan nama paparan anda untuk muncul di papan kedudukan.</div>
+
+    <label class="profile-input-label" for="profileUsernameInput">Nama / Alias</label>
+    <input type="text" id="profileUsernameInput" class="profile-input"
+      placeholder="cth: AhmadHafizi92" maxlength="20" autocomplete="off" spellcheck="false">
+
+    <label class="profile-input-label">Pilih Avatar</label>
+    <div class="avatar-grid" id="avatarGrid"></div>
+
+    <div class="modal-btns">
+      <button type="button" class="btn-cancel" id="profileCancelBtn" onclick="closeProfileModal()">Batal</button>
+      <button type="button" class="btn-confirm" onclick="saveProfile()">💾 Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LANDING SCREEN
+═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-landing" class="screen active">
+  <div class="landing-inner">
+
+    <!-- User chip (shown when profile exists) -->
+    <div class="user-chip" id="userChip" onclick="openProfileModal(true)">
+      <span class="user-chip-avatar" id="userChipAvatar">🎓</span>
+      <span id="userChipName">—</span>
+      <span style="color:var(--muted);font-size:0.65rem;">✏️</span>
+    </div>
+
+    <div class="history-strip" id="historyStrip">
+      <span>📈 Rekod Lepas:</span>
+      <span id="historyScores"></span>
+    </div>
+
+    <div class="exam-eyebrow">📋 Mock Examination · OUM</div>
+    <h1 class="landing-title">HPGD1103<br><em>Pembangunan Kurikulum</em></h1>
+    <p class="landing-sub">Open University Malaysia · Peperiksaan Akhir</p>
+
+    <div class="info-row">
+      <div class="info-pill">
+        <div>
+          <div class="ip-num">40</div>
+          <div class="ip-lbl">Soalan</div>
+        </div>
+      </div>
+      <div class="info-pill">
+        <div>
+          <div class="ip-num">90</div>
+          <div class="ip-lbl">Minit</div>
+        </div>
+      </div>
+      <div class="info-pill">
+        <div>
+          <div class="ip-num">MCQ</div>
+          <div class="ip-lbl">Format</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mode-selector">
+      <div class="mode-card exam-mode selected" id="modeExam" onclick="selectMode('exam')" role="button" tabindex="0">
+        <div class="mc-icon">⏱</div>
+        <div class="mc-title">Mod Peperiksaan</div>
+        <div class="mc-desc">1 jam 30 minit. Tiada maklum balas semasa exam. Hantar & semak selepas.</div>
+        <span class="mc-tag">Disyorkan</span>
+      </div>
+      <div class="mode-card practice-mode" id="modePractice" onclick="selectMode('practice')" role="button" tabindex="0">
+        <div class="mc-icon">🎯</div>
+        <div class="mc-title">Mod Latihan</div>
+        <div class="mc-desc">Tiada masa. Jawapan & penerangan ditunjukkan terus selepas setiap soalan.</div>
+        <span class="mc-tag">Belajar</span>
+      </div>
+    </div>
+
+    <div class="rules-box">
+      <h3>📌 Arahan</h3>
+      <ul>
+        <li>Soalan & pilihan jawapan <strong>diacak rawak</strong> setiap percubaan.</li>
+        <li id="ruleTimer">Masa peperiksaan <strong>1 jam 30 minit</strong>. Auto-hantar apabila masa tamat.</li>
+        <li>Setiap soalan ada <strong>4 pilihan (A–D)</strong>. Pilih satu sahaja.</li>
+        <li>Selepas hantar, laporan markah lengkap termasuk analisis topik akan dipaparkan.</li>
+      </ul>
+    </div>
+
+    <button type="button" class="btn-start" onclick="startExam()">🚀 Mulakan Sekarang</button>
+
+
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EXAM SCREEN
+═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-exam" class="screen">
+  <div class="exam-header">
+    <div class="exam-header-inner">
+      <div class="exam-title-bar">HPGD1103 — Pembangunan Kurikulum</div>
+      <div class="timer-wrap" id="timerWrap">
+        <span>⏱</span>
+        <span id="timerDisplay">01:30:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progressBar" style="width:0%"></div>
+  </div>
+
+  <div class="exam-body">
+    <!-- Navigator -->
+    <div class="q-navigator">
+      <div class="q-nav-header">
+        <span class="q-nav-label">Navigasi Soalan</span>
+        <div class="q-nav-legend">
+          <span><span class="dot dot-answered"></span>Dijawab</span>
+          <span><span class="dot dot-current"></span>Semasa</span>
+          <span><span class="dot dot-empty"></span>Belum</span>
+        </div>
+      </div>
+      <div class="q-nav-grid" id="qNavGrid"></div>
+    </div>
+
+    <!-- Questions stage -->
+    <div class="q-stage" id="qStage">
+      <div id="questionsContainer"></div>
+    </div>
+
+    <!-- Nav buttons -->
+    <div class="q-nav-buttons">
+      <button type="button" class="btn-nav" id="btnPrev" onclick="navigate(-1)" disabled>← Sebelum</button>
+      <button type="button" class="btn-nav" id="btnNext" onclick="navigate(1)">Seterus →</button>
+    </div>
+  </div>
+
+  <div class="exam-footer">
+    <div class="exam-footer-inner">
+      <button type="button" class="btn-home-footer" onclick="showHomeModal()">🏠 Utama</button>
+      <div class="footer-left">
+        <div class="answered-count">Dijawab: <strong id="answeredCount">0</strong> / 40</div>
+        <div class="footer-progress-text" id="footerPct">0% selesai</div>
+      </div>
+      <button type="button" class="btn-submit" onclick="showSubmitModal()">✅ Hantar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SUBMIT MODAL
+═══════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal-box">
+    <div class="modal-icon">📤</div>
+    <div class="modal-title">Hantar Peperiksaan?</div>
+    <div class="modal-desc">Anda akan menghantar semua jawapan. Tindakan ini tidak boleh dibatalkan.</div>
+    <div class="modal-warn" id="modalWarn"></div>
+    <div class="modal-btns">
+      <button type="button" class="btn-cancel" onclick="closeModal()">Batal</button>
+      <button type="button" class="btn-confirm" onclick="submitExam()">Ya, Hantar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOME CONFIRM MODAL
+═══════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="homeModal">
+  <div class="modal-box">
+    <div class="modal-icon">🏠</div>
+    <div class="modal-title">Kembali ke Menu Utama?</div>
+    <div class="modal-desc">Kemajuan exam semasa akan hilang dan masa akan berhenti. Adakah anda pasti?</div>
+    <div class="modal-btns">
+      <button type="button" class="btn-cancel" onclick="closeHomeModal()">Teruskan Exam</button>
+      <button type="button" class="btn-confirm" style="background:var(--teal);" onclick="goHome()">Ya, Kembali</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RESULTS SCREEN
+═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-results" class="screen">
+  <div class="results-hero">
+    <div class="results-hero-inner">
+      <div class="results-tag">Peperiksaan Selesai</div>
+      <h1 class="results-title">Laporan Markah</h1>
+      <p class="results-sub">HPGD1103 · Pembangunan Kurikulum</p>
+
+      <div class="grade-badge-wrap">
+        <div class="grade-badge" id="gradeBadge"></div>
+      </div>
+
+      <div class="score-section">
+        <div class="score-ring" id="scoreRing">
+          <div class="score-num" id="scoreNum">0</div>
+          <div class="score-denom">daripada 40</div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num" id="statCorrect" style="color:var(--green)">0</div>
+          <div class="stat-lbl">✅ Betul</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statWrong" style="color:var(--rose)">0</div>
+          <div class="stat-lbl">❌ Salah</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statPct" style="color:var(--indigo)">0%</div>
+          <div class="stat-lbl">📊 Skor</div>
+        </div>
+      </div>
+
+      <!-- Topic mastery -->
+      <div class="mastery-section">
+        <div class="mastery-title">📊 Penguasaan Mengikut Topik</div>
+        <div id="masteryRows"></div>
+      </div>
+
+      <!-- Streak banner -->
+      <div class="streak-banner" id="streakBanner">
+        <span class="sb-icon">🔥</span>
+        <span class="sb-text" id="streakText"></span>
+      </div>
+
+      <!-- Blind spot banner -->
+      <div class="blindspot-banner" id="blindspotBanner">
+        <div>
+          <div class="bs-title">⚠️ Titik Buta — Yakin tapi Salah!</div>
+          <div class="bs-list" id="blindspotList"></div>
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button type="button" class="btn-retake" onclick="retakeExam()">🔄 Cuba Semula</button>
+        <button type="button" class="btn-weak"   id="btnWeak"   onclick="retakeWeak()">🎯 Topik Lemah</button>
+        <button type="button" class="btn-review" onclick="scrollToReview()">📋 Semak Jawapan</button>
+        <button type="button" class="btn-home"   onclick="goHome()">🏠 Menu Utama</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="review-section" id="reviewSection">
+    <h2>📋 Semakan Jawapan Lengkap</h2>
+    <div id="reviewCards"></div>
+  </div>
+</div>
+
+<script>
+const QUESTION_BANK = [
+  // ── TOPIK 1: Apakah Kurikulum? ──────────────────────────────────────
+  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "recall",
+    question: "Perkataan 'kurikulum' berasal daripada bahasa Latin 'currere' yang bermaksud:",
+    options: [
+      "Proses pengajaran dan pembelajaran",
+      "Laluan atau trek tempat perlumbaan kereta kuda Rom",
+      "Rancangan pengajian di institusi pendidikan",
+      "Kandungan atau sukatan pelajaran"
+    ],
+    correct: 1,
+    explanation: "'Currere' dalam bahasa Latin merujuk kepada laluan atau trek tempat perlumbaan kereta kuda Rom diadakan. Ini adalah asal usul perkataan 'kurikulum' yang digunakan dalam konteks pendidikan."
+  },
+  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "recall",
+    question: "Siapakah yang digelar 'Bapa Kurikulum' dan menulis buku 'The Curriculum' pada tahun 1918?",
+    options: [
+      "Ralph Tyler",
+      "Hilda Taba",
+      "Franklin Bobbitt",
+      "John Dewey"
+    ],
+    correct: 2,
+    explanation: "Franklin Bobbitt digelar 'Bapa Kurikulum' kerana beliau menulis buku 'The Curriculum' pada tahun 1918, yang merupakan buku pertama yang membincangkan kurikulum sebagai bidang kajian yang sistematik."
+  },
+  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "recall",
+    question: "Konsep 'kurikulum tersembunyi' (hidden curriculum) pertama kali diperkenalkan oleh:",
+    options: [
+      "Franklin Bobbitt dalam 'The Curriculum' (1918)",
+      "Philip Jackson dalam 'Life in Classrooms' (1968)",
+      "Ralph Tyler dalam 'Basic Principles of Curriculum' (1949)",
+      "Hilda Taba dalam 'Curriculum Development' (1962)"
+    ],
+    correct: 1,
+    explanation: "Philip Jackson memperkenalkan konsep 'kurikulum tersembunyi' dalam bukunya 'Life in Classrooms' (1968). Beliau mendapati bahawa sekolah mengajar lebih daripada sekadar kurikulum formal yang tertulis."
+  },  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "critical",
+    question: "Sebuah sekolah menggunakan sukatan pelajaran yang menyenaraikan topik dan fakta yang perlu dikuasai oleh pelajar. Pendekatan kurikulum yang digunakan ialah:",
+    options: [
+      "Kurikulum sebagai proses",
+      "Kurikulum sebagai produk",
+      "Kurikulum sebagai kandungan",
+      "Kurikulum tersembunyi"
+    ],
+    correct: 2,
+    explanation: "Apabila kurikulum disamakan dengan sukatan pelajaran yang menyenaraikan topik dan kandungan yang perlu diajar, ini merupakan pendekatan 'kurikulum sebagai kandungan'. Ia memberi tumpuan kepada badan pengetahuan yang akan disampaikan kepada pelajar."
+  },  // ── TOPIK 2: Asas Falsafah ────────────────────────────────────────────
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Falsafah pendidikan yang berpendapat bahawa kurikulum sekolah harus berdasarkan 'buku-buku hebat' (Great Books) dan idea-idea yang telah bertahan sepanjang masa ialah:",
+    options: [
+      "Esensialisme",
+      "Progresivisme",
+      "Perenialisme",
+      "Rekonstruksionisme"
+    ],
+    correct: 2,
+    explanation: "Perenialisme percaya bahawa idea-idea hebat yang telah bertahan selama berabad-abad masih relevan hari ini. Penyokong utamanya ialah Robert Hutchins dan Mortimer Adler, yang mempromosikan program 'Great Books' dalam pendidikan."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "John Dewey adalah tokoh utama yang bertanggungjawab terhadap falsafah pendidikan:",
+    options: [
+      "Perenialisme",
+      "Esensialisme",
+      "Rekonstruksionisme",
+      "Progresivisme"
+    ],
+    correct: 3,
+    explanation: "John Dewey (1859-1952) adalah bapa progresivisme. Beliau percaya bahawa pendidikan mesti berdasarkan pengalaman hidup sebenar, dan manusia belajar terbaik melalui interaksi sosial dan aktiviti 'belajar sambil membuat' (learning by doing)."
+  },  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Falsafah pendidikan yang menekankan nilai moral tradisional, menghormati pihak berkuasa, dan pengetahuan akademik asas yang 'penting' ialah:",
+    options: [
+      "Progresivisme",
+      "Esensialisme",
+      "Rekonstruksionisme",
+      "Perenialisme"
+    ],
+    correct: 1,
+    explanation: "Esensialisme menganjurkan pengajaran nilai moral tradisional dan pengetahuan akademik asas (matematik, sains, sejarah, bahasa). Bilik darjah berpusatkan guru dan menekankan disiplin, ujian pencapaian, dan menghormati pihak berkuasa."
+  },  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Confucius menegaskan bahawa: 'Belajar tanpa berfikir ialah buruh hilang; berfikir tanpa belajar ialah bahaya.' Prinsip ini mencerminkan pandangannya tentang:",
+    options: [
+      "Pembelajaran sebagai proses pemerhatian diikuti dengan refleksi",
+      "Kepentingan hafalan dalam proses pembelajaran",
+      "Pendidikan hanya untuk golongan bangsawan",
+      "Kurikulum yang berfokus kepada sains dan teknologi"
+    ],
+    correct: 0,
+    explanation: "Confucius melihat pembelajaran sebagai proses yang menggabungkan pemerhatian (belajar) dengan refleksi (berfikir). Kedua-dua elemen ini mesti ada bersama — belajar tanpa berfikir tidak produktif, dan berfikir tanpa belajar adalah berbahaya."
+  },
+
+  // ── TOPIK 3: Asas Psikologi ──────────────────────────────────────────
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Ivan Pavlov memperkenalkan konsep pembelajaran melalui eksperimennya dengan anjing. Teori ini dikenali sebagai:",
+    options: [
+      "Pelaziman Operan",
+      "Pembelajaran Sosial",
+      "Pelaziman Klasik",
+      "Pembelajaran Bermakna"
+    ],
+    correct: 2,
+    explanation: "Ivan Pavlov memperkenalkan Teori Pelaziman Klasik melalui eksperimennya di mana anjing belajar mengaitkan bunyi loceng (rangsangan neutral) dengan makanan (rangsangan semula jadi) dan akhirnya mengeluarkan air liur apabila mendengar bunyi loceng sahaja."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "scenario",
+    question: "Seorang guru memberi pujian dan bintang emas kepada pelajar yang menyiapkan kerja rumah. Lama-kelamaan, pelajar mula rajin menyiapkan kerja rumah. Ini adalah contoh aplikasi teori:",
+    options: [
+      "Pelaziman Klasik Pavlov",
+      "Pelaziman Operan Skinner",
+      "Pembelajaran Sosial Bandura",
+      "Teori ZPD Vygotsky"
+    ],
+    correct: 1,
+    explanation: "Ini adalah contoh Pelaziman Operan B.F. Skinner — pujian dan bintang emas berfungsi sebagai peneguhan positif yang meningkatkan kebarangkalian tingkah laku (menyiapkan kerja rumah) akan berulang pada masa hadapan."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Konsep 'Zone of Proximal Development' (ZPD) diperkenalkan oleh:",
+    options: [
+      "Jean Piaget",
+      "Lev Vygotsky",
+      "Abraham Maslow",
+      "Carl Rogers"
+    ],
+    correct: 1,
+    explanation: "ZPD (Zon Perkembangan Proksimal) diperkenalkan oleh Lev Vygotsky. Ia merujuk kepada jarak antara apa yang pelajar boleh lakukan sendiri dengan apa yang boleh dicapai dengan bimbingan orang yang lebih berkemahiran."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Hierarki Keperluan Maslow bermula dari keperluan paling asas kepada keperluan tertinggi. Susunan yang BETUL ialah:",
+    options: [
+      "Estim → Fisiologi → Keselamatan → Sosial → Aktualisasi Diri",
+      "Fisiologi → Keselamatan → Sosial → Estim → Aktualisasi Diri",
+      "Keselamatan → Fisiologi → Estim → Sosial → Aktualisasi Diri",
+      "Aktualisasi Diri → Estim → Sosial → Keselamatan → Fisiologi"
+    ],
+    correct: 1,
+    explanation: "Hierarki Maslow bermula dari keperluan paling asas: (1) Fisiologi (makanan, air, tempat tinggal), (2) Keselamatan, (3) Sosial/Kasih Sayang, (4) Estim, dan (5) Aktualisasi Diri. Keperluan bawah mesti dipenuhi sebelum individu berusaha memenuhi keperluan yang lebih tinggi."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "critical",
+    question: "Seorang guru menggunakan kaedah 'scaffolding' — memberi bantuan beransur-ansur kepada pelajar sehingga mereka mampu melakukan tugasan sendiri. Teori psikologi apakah yang mendasari pendekatan ini?",
+    options: [
+      "Behaviourisme — peneguhan positif oleh Skinner",
+      "Kognitivisme — tahap perkembangan Piaget",
+      "Konstruktivisme — ZPD oleh Vygotsky",
+      "Humanisme — aktualisasi diri oleh Maslow"
+    ],
+    correct: 2,
+    explanation: "Scaffolding adalah aplikasi langsung daripada teori ZPD Vygotsky. Guru memberikan sokongan yang bersesuaian dalam zon perkembangan proksimal pelajar, kemudian beransur-ansur mengurangkan bantuan sehingga pelajar boleh berdikari."
+  },  // ── TOPIK 4: Asas Sosial & Sejarah ──────────────────────────────────
+  {
+    topic: "T4: Asas Sosial & Sejarah",
+    type: "recall",
+    question: "Pendekatan 'periuk lebur' (melting pot) dalam konteks kurikulum bermaksud:",
+    options: [
+      "Mengekalkan kepelbagaian budaya pelajar dalam kurikulum",
+      "Mengintegrasikan semua kumpulan etnik ke dalam satu identiti budaya bersama",
+      "Mengasingkan pelajar mengikut latar belakang budaya",
+      "Memberi keutamaan kepada budaya majoriti dalam kurikulum"
+    ],
+    correct: 1,
+    explanation: "Pendekatan 'periuk lebur' atau 'melting pot' bertujuan mengintegrasikan semua kumpulan pelbagai latar belakang budaya ke dalam satu identiti bersama, di mana perbezaan budaya diserap ke dalam budaya dominan. Ini berbeza dengan pendekatan 'mangkuk salad' yang mengekalkan kepelbagaian."
+  },
+  {
+    topic: "T4: Asas Sosial & Sejarah",
+    type: "scenario",
+    question: "Semasa Era Tokugawa di Jepun, sekolah Terakoya terkenal kerana:",
+    options: [
+      "Mengajar kurikulum ketenteraan khusus untuk samurai",
+      "Menyediakan pendidikan membaca, menulis dan mengira untuk rakyat biasa",
+      "Mengkhususkan dalam pengajian sains Barat",
+      "Mendidik kanak-kanak bangsawan sahaja"
+    ],
+    correct: 1,
+    explanation: "Sekolah Terakoya adalah sekolah paling luas untuk rakyat biasa semasa era Tokugawa. Fokus utamanya ialah pengajaran kemahiran asas membaca, menulis, dan mengira (abakus). Walaupun pendidikan tidak diwajibkan, kadar celik huruf Jepun ketika itu agak tinggi berbanding negara lain."
+  },
+  {
+    topic: "T4: Asas Sosial & Sejarah",
+    type: "recall",
+    question: "Apakah tujuan utama sistem pendidikan pada era Meiji di Jepun (1867-1900)?",
+    options: [
+      "Mengekalkan sistem feudal dan hierarki sosial tradisional",
+      "Mewujudkan nasionalisme Jepun dan memodenkan negara untuk bersaing dengan Barat",
+      "Mengajar kurikulum agama Buddha secara meluas",
+      "Memfokuskan kepada pendidikan pertanian dan kemahiran vokasional"
+    ],
+    correct: 1,
+    explanation: "Sistem pendidikan era Meiji direka untuk membina rasa nasionalisme yang kuat dan membantu Jepun mengejar kemajuan Barat. Enrolmen sekolah rendah meningkat dari 40-50% kepada lebih 90% pada tahun 1900. Sistem ini juga menanamkan kesetiaan kepada Maharaja."
+  },
+  {
+    topic: "T4: Asas Sosial & Sejarah",
+    type: "critical",
+    question: "Mengapa kurikulum sekolah dianggap sebagai 'cerminan nilai dan kepercayaan masyarakat'?",
+    options: [
+      "Kerana kurikulum hanya mengandungi fakta dan ilmu pengetahuan yang neutral",
+      "Kerana kurikulum sentiasa ditetapkan oleh pakar pendidikan tanpa pengaruh luar",
+      "Kerana kandungan dan fokus kurikulum mencerminkan apa yang dianggap penting, berharga dan diperlukan oleh masyarakat pada masa tertentu",
+      "Kerana semua kurikulum di dunia adalah sama dan universal"
+    ],
+    correct: 2,
+    explanation: "Kurikulum mencerminkan nilai masyarakat kerana keputusan tentang apa yang perlu diajar, cara pengajaran, dan matlamat pendidikan sentiasa dipengaruhi oleh kepercayaan, nilai, keperluan ekonomi, dan konteks budaya masyarakat pada masa tersebut."
+  },
+
+  // ── TOPIK 5: Perancangan Kurikulum ───────────────────────────────────
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Model Tyler (1949) mencadangkan empat soalan asas dalam pembangunan kurikulum. Antara berikut, yang BUKAN merupakan salah satu soalan tersebut ialah:",
+    options: [
+      "Apakah tujuan pendidikan yang perlu dicapai?",
+      "Apakah pengalaman pendidikan yang boleh disediakan?",
+      "Siapakah yang harus merancang kurikulum?",
+      "Bagaimana kita menentukan sama ada tujuan telah dicapai?"
+    ],
+    correct: 2,
+    explanation: "Empat soalan Tyler ialah: (1) Apakah tujuan pendidikan? (2) Pengalaman pendidikan apa yang perlu disediakan? (3) Bagaimana pengalaman ini dianjurkan dengan berkesan? (4) Bagaimana menentukan sama ada tujuan tercapai? Soalan 'Siapa yang merancang?' bukan sebahagian daripada model Tyler."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Model Taba (1962) dikenali sebagai 'model akar umbi' kerana:",
+    options: [
+      "Ia bermula dari atas (kementerian) ke bawah (sekolah)",
+      "Ia dimulakan oleh guru di peringkat bawah dan dibina ke atas",
+      "Ia menggunakan metafora pokok untuk menggambarkan kurikulum",
+      "Ia dibangunkan secara beransur-ansur seperti pertumbuhan tumbuhan"
+    ],
+    correct: 1,
+    explanation: "Model Taba disebut 'model akar umbi' (grass-roots model) kerana ia menggunakan pendekatan induktif — bermula dari guru di peringkat sekolah (bawah) dan dibina ke atas, berbeza dengan model Tyler yang lebih bersifat top-down dari pentadbir ke guru."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Dalam hierarki matlamat kurikulum, susunan yang BETUL dari paling umum kepada paling spesifik ialah:",
+    options: [
+      "Falsafah Pendidikan → Objektif Instruksional → Matlamat Kurikulum → Matlamat Pendidikan",
+      "Objektif Instruksional → Matlamat Pendidikan → Falsafah Pendidikan → Matlamat Kurikulum",
+      "Falsafah Pendidikan → Matlamat Pendidikan → Matlamat Kurikulum → Objektif Kurikulum → Objektif Instruksional",
+      "Matlamat Kurikulum → Falsafah Pendidikan → Objektif Kurikulum → Matlamat Pendidikan"
+    ],
+    correct: 2,
+    explanation: "Hierarki matlamat kurikulum bermula dari yang paling umum: Falsafah Pendidikan → Matlamat Pendidikan → Matlamat Kurikulum → Objektif Kurikulum → Matlamat Instruksional → Objektif Instruksional. Setiap peringkat menjadi lebih spesifik dan terukur."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "critical",
+    question: "Dalam Taksonomi Bloom domain kognitif, apakah perbezaan utama antara tahap 'Menganalisis' dan 'Menilai'?",
+    options: [
+      "Menganalisis adalah lebih tinggi daripada Menilai dalam hierarki",
+      "Menganalisis memecahkan maklumat untuk melihat hubungan, manakala Menilai membuat pertimbangan berdasarkan kriteria atau bukti",
+      "Menganalisis hanya melibatkan fakta, manakala Menilai melibatkan pendapat peribadi",
+      "Tiada perbezaan antara kedua-dua tahap tersebut"
+    ],
+    correct: 1,
+    explanation: "Menganalisis (tahap 4) melibatkan memecah maklumat kepada bahagian untuk melihat hubungan dan corak. Menilai (tahap 5) pula memerlukan membuat pertimbangan berdasarkan kriteria, bukti, atau standard tertentu. Mencipta (tahap 6) adalah yang tertinggi."
+  },  // ── TOPIK 6: Reka Bentuk Kurikulum ──────────────────────────────────
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "recall",
+    question: "Prinsip organisasi kandungan yang merujuk kepada keluasan dan kedalaman kandungan yang diajar ialah:",
+    options: [
+      "Urutan",
+      "Integrasi",
+      "Skop",
+      "Kesinambungan"
+    ],
+    correct: 2,
+    explanation: "Skop merujuk kepada keluasan (breadth) dan kedalaman (depth) kandungan kurikulum — iaitu berapa banyak topik yang akan diliputi dan sejauh mana setiap topik akan dibincangkan. Ia menjawab soalan 'Berapa banyak yang perlu diajar?'"
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "scenario",
+    question: "Dalam pelajaran Sains Darjah 6, tema 'air' dikaji dari perspektif sains (komposisi), geografi (taburan), bahasa (kosa kata), dan sejarah (perselisihan air). Prinsip organisasi kandungan apakah yang digunakan?",
+    options: [
+      "Urutan",
+      "Kesinambungan",
+      "Skop",
+      "Integrasi"
+    ],
+    correct: 3,
+    explanation: "Ini adalah contoh integrasi kurikulum — satu tema ('air') dikaji merentasi pelbagai mata pelajaran. Integrasi menghubungkan kandungan dari disiplin yang berbeza untuk memberi pengalaman pembelajaran yang lebih bermakna dan holistik."
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "recall",
+    question: "Model reka bentuk kurikulum yang berpusatkan pelajar dan memberi penekanan kepada keperluan, minat, dan pengalaman individu pelajar ialah:",
+    options: [
+      "Reka bentuk berpusatkan subjek",
+      "Reka bentuk berpusatkan masalah",
+      "Reka bentuk berpusatkan pelajar",
+      "Reka bentuk berpusatkan guru"
+    ],
+    correct: 2,
+    explanation: "Reka bentuk berpusatkan pelajar memberi keutamaan kepada keperluan, minat, dan pengalaman individu pelajar dalam merancang kurikulum. Pendekatan ini sesuai dengan falsafah progresivisme yang melihat pelajar sebagai individu aktif dalam proses pembelajaran."
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "critical",
+    question: "Apakah maksud 'kesinambungan' (continuity) sebagai prinsip organisasi kandungan kurikulum?",
+    options: [
+      "Kandungan diajar secara berurutan dari mudah kepada sukar",
+      "Kandungan yang sama diulang dan diperkukuh merentas tahun persekolahan",
+      "Kandungan merentasi beberapa mata pelajaran yang berbeza",
+      "Kandungan meliputi keluasan topik yang luas"
+    ],
+    correct: 1,
+    explanation: "Kesinambungan (continuity) bermaksud pengulangan dan pengukuhan elemen-elemen penting kurikulum merentas tahun persekolahan. Ia memastikan pelajar terus terdedah kepada konsep, kemahiran, dan nilai penting secara konsisten dari tahun ke tahun."
+  },
+
+  // ── TOPIK 7: Pelaksanaan Kurikulum ──────────────────────────────────
+  {
+    topic: "T7: Pelaksanaan Kurikulum",
+    type: "recall",
+    question: "Antara sebab-sebab berikut, yang manakah PALING kerap menyebabkan guru menentang perubahan kurikulum?",
+    options: [
+      "Guru tidak suka belajar perkara baru",
+      "Guru tidak memahami tujuan perubahan dan tiada rasa pemilikan terhadap perubahan",
+      "Kementerian Pendidikan tidak meminta pandangan guru",
+      "Kurikulum baru terlalu senang untuk diajar"
+    ],
+    correct: 1,
+    explanation: "Antara sebab utama penentangan ialah: tidak faham tujuan, tiada rasa pemilikan, kurang kecekapan, tiada insentif, dan tiada masa. Ketiadaan komunikasi yang jelas tentang 'mengapa' perubahan diperlukan adalah punca paling kerap berlaku."
+  },
+  {
+    topic: "T7: Pelaksanaan Kurikulum",
+    type: "scenario",
+    question: "Kementerian Pendidikan melaksanakan kurikulum baru. Guru-guru mengeluh kerana mereka tidak pernah terlibat dalam proses perancangan dan merasa keputusan 'dipaksakan' ke atas mereka. Masalah ini boleh diatasi dengan cara:",
+    options: [
+      "Memberi amaran kepada guru yang tidak mematuhi",
+      "Melibatkan guru dalam proses penerokaan dan perancangan kurikulum dari awal",
+      "Menambah gaji guru tanpa melibatkan mereka dalam proses",
+      "Mengurangkan bilangan soalan dalam peperiksaan"
+    ],
+    correct: 1,
+    explanation: "Guru yang rasa 'tiada pemilikan' terhadap perubahan akan menentangnya. Penyelesaian terbaik ialah melibatkan guru dalam proses sejak awal supaya mereka merasa bahawa pandangan mereka diambil kira dan perubahan itu sebahagian daripada inisiatif mereka sendiri."
+  },
+  {
+    topic: "T7: Pelaksanaan Kurikulum",
+    type: "recall",
+    question: "Dalam kajian kes Indonesia (1994), kurikulum 'Local Content Curriculum' (LCC) menghadapi masalah pelaksanaan. Antara halangan utama yang dikenal pasti ialah:",
+    options: [
+      "Kurikulum tersebut terlalu mudah untuk diajar",
+      "Tiada permintaan daripada pelajar",
+      "Kekurangan sumber, latihan guru yang tidak mencukupi, dan kurang komunikasi antara peringkat",
+      "Guru terlalu berpengalaman dan tidak perlu latihan"
+    ],
+    correct: 2,
+    explanation: "Halangan pelaksanaan LCC di Indonesia termasuk: kekurangan komunikasi antara peringkat wilayah dan tempatan, guru mengajar tanpa kemahiran khusus yang diperlukan, sikap negatif guru, dan kurang sokongan dari peringkat kerajaan."
+  },
+  {
+    topic: "T7: Pelaksanaan Kurikulum",
+    type: "critical",
+    question: "Pengetua adalah individu yang terlibat dalam pelaksanaan kurikulum. Apakah peranan UTAMA yang dimainkan oleh pengetua dalam proses ini?",
+    options: [
+      "Menulis rancangan pengajaran harian untuk semua guru",
+      "Menyediakan kepimpinan, sokongan sumber, dan mewujudkan iklim sekolah yang kondusif untuk perubahan",
+      "Mengajar semua mata pelajaran secara langsung",
+      "Menilai kerja pelajar secara individu"
+    ],
+    correct: 1,
+    explanation: "Pengetua berperanan sebagai pemimpin kurikulum yang menyediakan hala tuju, sokongan sumber (masa, bahan, latihan), dan mewujudkan persekitaran sekolah yang menyokong pelaksanaan kurikulum baru dengan berkesan."
+  },
+
+  // ── TOPIK 8: Penilaian Kurikulum ─────────────────────────────────────
+  {
+    topic: "T8: Penilaian Kurikulum",
+    type: "recall",
+    question: "Model penilaian CIPP yang dibangunkan oleh Stufflebeam terdiri daripada empat komponen. Apakah makna 'P' kedua dalam singkatan CIPP?",
+    options: [
+      "Planning (Perancangan)",
+      "Product (Produk)",
+      "Performance (Prestasi)",
+      "Process (Proses)"
+    ],
+    correct: 1,
+    explanation: "CIPP bermaksud: C = Context (Konteks), I = Input (Input), P = Process (Proses), P = Product (Produk). 'P' yang kedua ialah 'Product' yang menilai hasil akhir atau kesan program tersebut."
+  },
+  {
+    topic: "T8: Penilaian Kurikulum",
+    type: "recall",
+    question: "Penilaian yang dijalankan SEMASA program masih berjalan, dengan tujuan untuk membuat penambahbaikan berterusan, dikenali sebagai:",
+    options: [
+      "Penilaian sumatif",
+      "Penilaian formatif",
+      "Penilaian normatif",
+      "Penilaian model CIPP"
+    ],
+    correct: 1,
+    explanation: "Penilaian formatif dijalankan semasa proses pelaksanaan berlangsung. Tujuannya adalah untuk mendapatkan maklum balas segera dan membuat penambahbaikan berterusan. Berbeza dengan penilaian sumatif yang dijalankan selepas program selesai."
+  },
+  {
+    topic: "T8: Penilaian Kurikulum",
+    type: "scenario",
+    question: "Seorang pakar pendidikan menilai sebuah program sekolah dengan cara memerhati secara mendalam, seperti seorang pengkritik seni menilai sebuah karya seni. Apakah model penilaian yang digunakan?",
+    options: [
+      "Model CIPP Stufflebeam",
+      "Model Wajah Stake",
+      "Model Connoisseurship Eisner",
+      "Model Tyler"
+    ],
+    correct: 2,
+    explanation: "Model Connoisseurship Eisner menggunakan analogi pengkritik seni — penilai perlu mempunyai kepakaran mendalam untuk 'merasai' dan menilai kualiti program secara kualitatif. Eisner berpendapat bahawa tidak semua aspek pendidikan boleh diukur secara kuantitatif."
+  },
+  {
+    topic: "T8: Penilaian Kurikulum",
+    type: "recall",
+    question: "Dalam Model Penilaian Stake, apakah yang dimaksudkan dengan 'antecedents' (keadaan awal)?",
+    options: [
+      "Hasil atau outcomes yang telah dicapai oleh program",
+      "Proses yang berlaku semasa program dilaksanakan",
+      "Keadaan yang wujud sebelum program bermula yang mungkin mempengaruhi hasilnya",
+      "Penilaian akhir tentang keberkesanan program"
+    ],
+    correct: 2,
+    explanation: "Dalam Model Wajah Stake, 'antecedents' merujuk kepada semua keadaan yang wujud sebelum program bermula — termasuk ciri-ciri pelajar, latar belakang guru, sumber yang ada, dan konteks institusi. Ini mempengaruhi bagaimana program dilaksanakan dan keputusannya."
+  },
+
+  // ── TOPIK 9: Isu & Trend ──────────────────────────────────────────────
+  {
+    topic: "T9: Isu & Trend",
+    type: "recall",
+    question: "Apakah yang dimaksudkan dengan 'pendidikan pampasan' (compensatory education)?",
+    options: [
+      "Program pendidikan untuk pelajar berbakat dan pintar cerdas",
+      "Program pendidikan yang direka untuk membantu pelajar yang kurang bernasib baik mengatasi kekurangan awal",
+      "Program pendidikan yang memberi tumpuan kepada kemahiran vokasional",
+      "Program pendidikan yang menggunakan teknologi untuk menggantikan guru"
+    ],
+    correct: 1,
+    explanation: "Pendidikan pampasan adalah program yang direka khusus untuk membantu pelajar dari latar belakang yang kurang bernasib baik (dari segi ekonomi, sosial, atau budaya) mengatasi kekurangan awal dan mengurangkan jurang pencapaian dengan rakan sebaya mereka."
+  },
+  {
+    topic: "T9: Isu & Trend",
+    type: "critical",
+    question: "Globalisasi telah memberi impak besar kepada kurikulum. Apakah cabaran utama yang dihadapi oleh pembangun kurikulum akibat globalisasi?",
+    options: [
+      "Pengurangan bilangan pelajar di sekolah",
+      "Keperluan menyeimbangkan identiti tempatan/nasional dengan persediaan untuk dunia global yang bersaing",
+      "Kekurangan guru yang berkelayakan",
+      "Pengurangan masa persekolahan"
+    ],
+    correct: 1,
+    explanation: "Globalisasi mewujudkan ketegangan antara keperluan mengekalkan identiti budaya dan kebangsaan dengan keperluan menyediakan pelajar untuk bersaing dalam pasaran kerja global. Pembangun kurikulum perlu menyeimbangkan kedua-dua keperluan ini."
+  },
+  {
+    topic: "T9: Isu & Trend",
+    type: "scenario",
+    question: "Sebuah negara memutuskan untuk mewujudkan kelas khas untuk pelajar 'berbakat' dengan kurikulum yang berbeza. Apakah isu etika utama yang perlu dipertimbangkan?",
+    options: [
+      "Kos yang terlalu tinggi untuk melaksanakan program ini",
+      "Keadilan dalam mengenal pasti dan memilih pelajar berbakat, serta risiko diskriminasi dan pengasingan sosial",
+      "Ketiadaan guru yang berkelayakan untuk mengajar kelas tersebut",
+      "Kurangnya bahan pengajaran yang sesuai"
+    ],
+    correct: 1,
+    explanation: "Isu utama ialah keadilan dan kesaksamaan — bagaimana 'keberbakatan' ditakrifkan dan dikesan? Adakah proses pemilihan adil kepada semua kumpulan? Pengasingan pelajar berbakat juga boleh mewujudkan diskriminasi dan mengurangkan interaksi sosial yang sihat."
+  },
+
+  
+  {
+    topic: "T9: Isu & Trend",
+    type: "recall",
+    question: "Antara berikut, yang manakah merupakan cabaran utama yang memberi impak kepada kurikulum dalam konteks 'Zaman Maklumat'?",
+    options: [
+      "Pengurangan bilangan pelajar di sekolah akibat kadar kelahiran yang rendah",
+      "Keperluan mengintegrasikan literasi maklumat dan kemahiran digital dalam kurikulum",
+      "Kekurangan buku teks dan bahan bercetak di sekolah",
+      "Ketiadaan guru yang berkelayakan dalam mata pelajaran teras"
+    ],
+    correct: 1,
+    explanation: "Zaman Maklumat mewujudkan cabaran bagi kurikulum untuk menyediakan pelajar dengan kemahiran literasi maklumat dan digital. Pelajar perlu mampu menilai, menapis, dan menggunakan maklumat secara kritis dalam persekitaran digital yang semakin kompleks."
+  },// ── TOPIK 10: Arah Masa Depan ────────────────────────────────────────
+  {
+    topic: "T10: Arah Masa Depan",
+    type: "recall",
+    question: "Pendidikan karakter dalam konteks kurikulum masa depan merujuk kepada:",
+    options: [
+      "Pengajaran kemahiran teknikal dan vokasional semata-mata",
+      "Penekanan kepada peperiksaan awam dan penilaian akademik",
+      "Pembangunan nilai murni, etika, dan sahsiah pelajar sebagai pelengkap kepada pencapaian akademik",
+      "Program latihan fizikal dan sukan untuk pelajar"
+    ],
+    correct: 2,
+    explanation: "Pendidikan karakter melampaui pencapaian akademik — ia memfokuskan kepada pembangunan nilai, etika, integriti, dan sahsiah mulia dalam diri pelajar. Ini selaras dengan pandangan Al-Farabi, Confucius, dan Tagore tentang pembangunan manusia secara holistik."
+  },
+  {
+    topic: "T10: Arah Masa Depan",
+    type: "critical",
+    question: "Senario 'sekolah berasaskan teknologi' untuk masa depan mempunyai KELEBIHAN dan CABARAN. Apakah cabaran utamanya?",
+    options: [
+      "Teknologi terlalu murah dan mudah diakses oleh semua",
+      "Guru tidak lagi diperlukan dalam sistem pendidikan",
+      "Jurang digital antara pelajar yang mempunyai akses teknologi dengan yang tidak mempunyainya",
+      "Terlalu banyak bahan pembelajaran tersedia"
+    ],
+    correct: 2,
+    explanation: "Jurang digital (digital divide) adalah cabaran utama sekolah berasaskan teknologi. Pelajar dari kawasan luar bandar atau keluarga berpendapatan rendah mungkin tidak mempunyai akses kepada peranti atau internet yang diperlukan, yang boleh meningkatkan ketidaksamaan pendidikan."
+  },
+  {
+    topic: "T10: Arah Masa Depan",
+    type: "scenario",
+    question: "Seorang pelajar belajar di rumah dengan kurikulum yang dirancang berdasarkan minat dan kelajuan belajarnya sendiri, disokong oleh ibu bapanya. Ini adalah contoh senario sekolah masa depan yang mana?",
+    options: [
+      "Sekolah untuk Semua",
+      "Berfikir Pergi ke Sekolah",
+      "Sekolah Peribadi",
+      "Sekolah Berasaskan Teknologi"
+    ],
+    correct: 2,
+    explanation: "Ini adalah contoh 'Sekolah Peribadi' (privatised schooling) yang merangkumi homeschooling dan pembelajaran yang diperibadikan. Pelajar mempunyai kawalan lebih besar ke atas apa, bila, dan bagaimana mereka belajar mengikut keperluan individu."
+  }
+];
+
+// ════════════════════════════════════════════════════════════════════════
+// PROFILE SYSTEM
+// ════════════════════════════════════════════════════════════════════════
+const AVATARS = ['🎓','📚','🧑‍🏫','👩‍🎓','🧑‍💻','🦁','🐯','🦊','🐧','🦅',
+                 '🌟','🔥','⚡','🎯','🏆','🎮','🚀','💎','🍀','🌙'];
+
+let currentProfile = null; // { username, avatar }
+let selectedAvatar = AVATARS[0];
+
+function loadProfile() {
+  try {
+    const raw = localStorage.getItem('exam-profile');
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function saveProfileData(profile) {
+  try { localStorage.setItem('exam-profile', JSON.stringify(profile)); } catch(e) {}
+}
+
+function buildAvatarGrid() {
+  const grid = document.getElementById('avatarGrid');
+  grid.innerHTML = '';
+  AVATARS.forEach((av, i) => {
+    const el = document.createElement('div');
+    el.className = 'avatar-opt' + (av === selectedAvatar ? ' selected' : '');
+    el.textContent = av;
+    el.onclick = () => {
+      selectedAvatar = av;
+      grid.querySelectorAll('.avatar-opt').forEach(x => x.classList.remove('selected'));
+      el.classList.add('selected');
+    };
+    grid.appendChild(el);
+  });
+}
+
+function openProfileModal(isEdit) {
+  const p = currentProfile;
+  selectedAvatar = p ? p.avatar : AVATARS[0];
+  document.getElementById('profileUsernameInput').value = p ? p.username : '';
+  document.getElementById('profileModalTitle').textContent = isEdit ? 'Edit Profil' : 'Buat Profil Anda';
+  document.getElementById('profileCancelBtn').style.display = (isEdit || p) ? '' : 'none';
+  buildAvatarGrid();
+  document.getElementById('profileModal').classList.add('active');
+  setTimeout(() => document.getElementById('profileUsernameInput').focus(), 200);
+}
+
+function closeProfileModal() {
+  document.getElementById('profileModal').classList.remove('active');
+}
+
+function saveProfile() {
+  const name = document.getElementById('profileUsernameInput').value.trim();
+  if (!name) {
+    document.getElementById('profileUsernameInput').focus();
+    document.getElementById('profileUsernameInput').style.borderColor = 'var(--rose)';
+    setTimeout(() => document.getElementById('profileUsernameInput').style.borderColor = '', 1200);
+    return;
+  }
+  currentProfile = { username: name, avatar: selectedAvatar };
+  saveProfileData(currentProfile);
+  closeProfileModal();
+  renderUserChip();
+}
+
+function renderUserChip() {
+  const chip = document.getElementById('userChip');
+  if (currentProfile) {
+    document.getElementById('userChipAvatar').textContent = currentProfile.avatar;
+    document.getElementById('userChipName').textContent   = currentProfile.username;
+    chip.classList.add('show');
+  } else {
+    chip.classList.remove('show');
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════════════════════
+let shuffledQ      = [];
+let userAnswers    = {};       // { qi: optionIndex }
+let confidence     = {};       // { qi: 'ragu'|'yakin'|'pasti' }
+let currentQ       = 0;
+let timerInterval  = null;
+let timeLeft       = 90 * 60;
+let examMode       = 'exam';   // 'exam' | 'practice'
+let examActive     = false;
+let weakTopics     = [];       // topics scoring < 60%
+let practiceAnswered = {};     // qi → true, locks options in practice mode
+
+// ════════════════════════════════════════════════════════════════════════
+// TOPIC COLOURS (for mastery bars)
+// ════════════════════════════════════════════════════════════════════════
+const TOPIC_COLORS = [
+  'var(--t1)','var(--t2)','var(--t3)','var(--t4)','var(--t5)',
+  'var(--t6)','var(--t7)','var(--t8)','var(--t9)','var(--t10)'
+];
+
+const ALL_TOPICS = [
+  'T1: Apakah Kurikulum?','T2: Asas Falsafah',
+  'T3: Asas Psikologi','T4: Asas Sosial & Sejarah',
+  'T5: Perancangan Kurikulum','T6: Reka Bentuk Kurikulum',
+  'T7: Pelaksanaan Kurikulum','T8: Penilaian Kurikulum',
+  'T9: Isu & Trend','T10: Arah Masa Depan'
+];
+
+// ════════════════════════════════════════════════════════════════════════
+// UTILITIES
+// ════════════════════════════════════════════════════════════════════════
+function shuffle(arr) {
+  const a = Array.isArray(arr) ? arr.slice() : Array.from(arr);
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function fmtTime(s) {
+  const h   = Math.floor(s / 3600);
+  const m   = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return [h, m, sec].map(v => String(v).padStart(2,'0')).join(':');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function qs(sel) { return document.querySelector(sel); }
+function qsa(sel) { return document.querySelectorAll(sel); }
+
+// ════════════════════════════════════════════════════════════════════════
+// THEME TOGGLE
+// ════════════════════════════════════════════════════════════════════════
+function toggleTheme() {
+  const html = document.documentElement;
+  applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('themeIcon').textContent  = t === 'light' ? '☀️' : '🌙';
+  document.getElementById('themeLabel').textContent = t === 'light' ? 'Light' : 'Dark';
+  try { localStorage.setItem('exam-theme', t); } catch(e){}
+}
+(function(){
+  try { const s = localStorage.getItem('exam-theme'); if(s) applyTheme(s); } catch(e){}
+})();
+
+// ════════════════════════════════════════════════════════════════════════
+// MODE SELECTOR
+// ════════════════════════════════════════════════════════════════════════
+function selectMode(mode) {
+  examMode = mode;
+  document.getElementById('modeExam').classList.toggle('selected', mode === 'exam');
+  document.getElementById('modePractice').classList.toggle('selected', mode === 'practice');
+  document.getElementById('ruleTimer').style.opacity = mode === 'practice' ? '0.4' : '1';
+  document.getElementById('timerWrap').style.display = mode === 'practice' ? 'none' : 'flex';
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// ATTEMPT HISTORY  (localStorage)
+// ════════════════════════════════════════════════════════════════════════
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem('exam-history');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+function saveHistory(score) {
+  try {
+    let h = loadHistory();
+    h.push(score);
+    if (h.length > 5) h = h.slice(-5);
+    localStorage.setItem('exam-history', JSON.stringify(h));
+  } catch(e) {}
+}
+function renderHistory() {
+  const h = loadHistory();
+  if (h.length < 1) return;
+  const strip = document.getElementById('historyStrip');
+  const scores = document.getElementById('historyScores');
+  const parts = h.map((s, i) => {
+    const arrow = i > 0 ? (s > h[i-1] ? '<span class="hs-arrow">↑</span>' : s < h[i-1] ? '<span class="hs-arrow" style="color:var(--rose)">↓</span>' : '<span class="hs-arrow" style="color:var(--muted)">→</span>') : '';
+    return `${arrow}<span class="hs-score">${s}/40</span>`;
+  });
+  scores.innerHTML = parts.join(' ');
+  strip.classList.add('show');
+}
+renderHistory();
+
+// Init profile
+currentProfile = loadProfile();
+renderUserChip();
+
+// Profile modal backdrop close
+document.getElementById('profileModal').addEventListener('click', function(e) {
+  if (e.target === this && currentProfile) closeProfileModal();
+});
+
+// ════════════════════════════════════════════════════════════════════════
+// START EXAM
+// ════════════════════════════════════════════════════════════════════════
+function startExam(filterTopics) {
+  let pool = QUESTION_BANK;
+  if (filterTopics && filterTopics.length) {
+    pool = QUESTION_BANK.filter(q => filterTopics.some(t => q.topic.startsWith(t)));
+    // pad if pool < 10
+    if (pool.length < 10) pool = QUESTION_BANK;
+  }
+
+  shuffledQ = shuffle(pool).slice(0, 40).map(q => {
+    const optMap = q.options.map((text, idx) => ({ text, origIdx: idx }));
+    const shuffled = shuffle(optMap);
+    const newCorrect = shuffled.findIndex(o => o.origIdx === q.correct);
+    return { ...q, options: shuffled.map(o => o.text), correct: newCorrect };
+  });
+
+  userAnswers      = {};
+  confidence       = {};
+  practiceAnswered = {};
+  currentQ         = 0;
+  timeLeft         = 90 * 60;
+  examActive       = true;
+
+  // Mode badge
+  const badge = document.getElementById('modeBadge');
+  badge.className = `mode-badge show ${examMode}`;
+  badge.textContent = examMode === 'exam' ? '⏱ Mod Peperiksaan' : '🎯 Mod Latihan';
+
+  buildExamUI();
+  showScreen('screen-exam');
+
+  if (examMode === 'exam') startTimer();
+  else document.getElementById('timerWrap').style.display = 'none';
+
+  renderNavigator();
+  showQuestion(0);
+
+  // Exit intent
+  window.onbeforeunload = e => { if (examActive) { e.returnValue = ''; return ''; } };
+}
+
+function retakeExam() {
+  examMode = 'exam';
+  selectMode('exam');
+  examActive = false;
+  clearInterval(timerInterval);
+  document.getElementById('modeBadge').classList.remove('show');
+  showScreen('screen-landing');
+  try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) { window.scrollTo(0,0); }
+}
+
+function retakeWeak() {
+  if (!weakTopics.length) { retakeExam(); return; }
+  startExam(weakTopics);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// TIMER
+// ════════════════════════════════════════════════════════════════════════
+function startTimer() {
+  const el = document.getElementById('timerDisplay');
+  el.textContent = fmtTime(timeLeft);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    el.textContent = fmtTime(timeLeft);
+    if (timeLeft <= 300) el.classList.add('warning');
+    if (timeLeft <= 0) { clearInterval(timerInterval); submitExam(); }
+  }, 1000);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// BUILD EXAM UI
+// ════════════════════════════════════════════════════════════════════════
+function getTopicIndex(topicStr) {
+  return ALL_TOPICS.findIndex(t => topicStr.startsWith(t.split(':')[0]));
+}
+
+function buildExamUI() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  shuffledQ.forEach((q, qi) => {
+    const ti = getTopicIndex(q.topic);
+    const typeLbl = { recall:'🔵 Fakta', scenario:'🟡 Senario', critical:'🔴 Analisis' }[q.type] || q.type;
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `qcard-${qi}`;
+    card.setAttribute('data-topic', ti);
+    card.innerHTML = `
+      <div class="q-meta">
+        <span class="q-num">Soalan ${qi+1}</span>
+        <span class="q-topic-chip">${q.topic}</span>
+        <span class="q-type-chip ${q.type}">${typeLbl}</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      <div class="options-list" id="opts-${qi}">
+        ${q.options.map((opt, oi) => `
+          <div class="option-item" id="opt-${qi}-${oi}"
+            role="button" tabindex="0"
+            onclick="selectOption(${qi},${oi},event)"
+            onkeydown="if(event.key==='Enter'||event.key===' ')selectOption(${qi},${oi},event)"
+            ontouchend="handleTouch(${qi},${oi},event)">
+            <div class="option-letter">${'ABCD'[oi]}</div>
+            <div class="option-text">${opt}</div>
+          </div>`).join('')}
+      </div>
+      <div class="practice-inline-explain" id="explain-${qi}">
+        <strong>📖 Penjelasan:</strong> ${q.explanation}
+      </div>
+      <div class="confidence-row" id="conf-${qi}">
+        <span class="conf-label">Keyakinan:</span>
+        <div class="conf-btns">
+          <button type="button" class="conf-btn" onclick="setConfidence(${qi},'ragu')">😐 Ragu</button>
+          <button type="button" class="conf-btn" onclick="setConfidence(${qi},'yakin')">🙂 Yakin</button>
+          <button type="button" class="conf-btn" onclick="setConfidence(${qi},'pasti')">😎 Pasti</button>
+        </div>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// NAVIGATOR
+// ════════════════════════════════════════════════════════════════════════
+function renderNavigator() {
+  const grid = document.getElementById('qNavGrid');
+  grid.innerHTML = '';
+  shuffledQ.forEach((_, qi) => {
+    const dot = document.createElement('div');
+    dot.className = 'q-dot' +
+      (qi === currentQ ? ' current' : '') +
+      (userAnswers[qi] !== undefined ? ' answered' : '');
+    dot.textContent = qi + 1;
+    dot.setAttribute('role', 'button');
+    dot.setAttribute('tabindex', '0');
+    dot.onclick = () => goToQuestion(qi);
+    dot.addEventListener('touchend', e => { e.preventDefault(); goToQuestion(qi); });
+    grid.appendChild(dot);
+  });
+}
+
+function updateNav() {
+  qsa('.q-dot').forEach((d, i) => {
+    d.className = 'q-dot' +
+      (i === currentQ ? ' current' : '') +
+      (userAnswers[i] !== undefined ? ' answered' : '');
+  });
+}
+
+function updateProgress() {
+  const n   = Object.keys(userAnswers).length;
+  const pct = Math.round((n / shuffledQ.length) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('answeredCount').textContent = n;
+  document.getElementById('footerPct').textContent = pct + '% selesai';
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// SHOW QUESTION (with slide transition)
+// ════════════════════════════════════════════════════════════════════════
+function showQuestion(qi, dir) {
+  const prev = document.getElementById(`qcard-${currentQ}`);
+  const next = document.getElementById(`qcard-${qi}`);
+  if (!next) return;
+
+  if (prev && prev !== next && dir) {
+    prev.className = prev.className.replace(' visible','');
+    prev.classList.add(dir === 1 ? 'slide-out-left' : 'slide-out-right');
+    setTimeout(() => { prev.classList.remove('slide-out-left','slide-out-right'); }, 220);
+
+    setTimeout(() => {
+      next.classList.remove('slide-in-left','slide-in-right','visible');
+      next.classList.add('visible', dir === 1 ? 'slide-in-right' : 'slide-in-left');
+    }, 200);
+  } else {
+    qsa('.question-card').forEach(c => c.classList.remove('visible'));
+    next.classList.add('visible');
+  }
+
+  currentQ = qi;
+  document.getElementById('btnPrev').disabled = qi === 0;
+  document.getElementById('btnNext').disabled = qi === shuffledQ.length - 1;
+  updateNav();
+}
+
+function navigate(dir) {
+  const next = currentQ + dir;
+  if (next >= 0 && next < shuffledQ.length) showQuestion(next, dir);
+}
+
+function goToQuestion(qi) {
+  const dir = qi > currentQ ? 1 : -1;
+  showQuestion(qi, dir);
+  try {
+    document.getElementById(`qcard-${qi}`).scrollIntoView({ behavior:'smooth', block:'nearest' });
+  } catch(e) {
+    document.getElementById(`qcard-${qi}`).scrollIntoView(true);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// SELECT OPTION
+// ════════════════════════════════════════════════════════════════════════
+function handleTouch(qi, oi, e) {
+  e.preventDefault();
+  selectOption(qi, oi, e);
+}
+
+function selectOption(qi, oi, e) {
+  // Practice mode: lock after first answer
+  if (examMode === 'practice' && practiceAnswered[qi]) return;
+
+  // Ripple effect
+  const item = document.getElementById(`opt-${qi}-${oi}`);
+  if (e && item) {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const rect = item.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : (e.clientX || rect.left + rect.width/2);
+    const clientY = e.touches ? e.touches[0].clientY : (e.clientY || rect.top + rect.height/2);
+    const size = Math.max(rect.width, rect.height) * 2;
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${clientX-rect.left-size/2}px;top:${clientY-rect.top-size/2}px`;
+    item.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  // Deselect all for this question
+  qsa(`#opts-${qi} .option-item`).forEach(el => {
+    el.classList.remove('selected','practice-correct','practice-wrong','practice-show-correct');
+  });
+
+  userAnswers[qi] = oi;
+  item.classList.add('selected');
+
+  if (examMode === 'practice') {
+    practiceAnswered[qi] = true;
+    const correct = shuffledQ[qi].correct;
+    if (oi === correct) {
+      item.classList.remove('selected');
+      item.classList.add('practice-correct');
+    } else {
+      item.classList.remove('selected');
+      item.classList.add('practice-wrong');
+      document.getElementById(`opt-${qi}-${correct}`).classList.add('practice-show-correct');
+    }
+    // Show explanation
+    document.getElementById(`explain-${qi}`).classList.add('show');
+    // Lock all options
+    qsa(`#opts-${qi} .option-item`).forEach(el => {
+      el.style.pointerEvents = 'none';
+      el.style.cursor = 'default';
+    });
+  }
+
+  updateNav();
+  updateProgress();
+
+  // Show confidence picker after selection (exam mode only)
+  if (examMode === 'exam') {
+    const confRow = document.getElementById(`conf-${qi}`);
+    if (confRow) confRow.classList.add('show');
+  }
+
+  // Milestone toasts
+  checkMilestone();
+}
+
+function setConfidence(qi, level) {
+  confidence[qi] = level;
+  qsa(`#conf-${qi} .conf-btn`).forEach(b => b.classList.remove('selected'));
+  const btn = qsa(`#conf-${qi} .conf-btn`);
+  const map = { ragu: 0, yakin: 1, pasti: 2 };
+  if (btn[map[level]]) btn[map[level]].classList.add('selected');
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// MILESTONE TOASTS
+// ════════════════════════════════════════════════════════════════════════
+const MILESTONES = {
+  10: '✅ 25% selesai — teruskan!',
+  20: '⏸ Separuh jalan — hampir sampai!',
+  30: '🔥 75% — hampir selesai!',
+  38: '⚡ Tinggal 2 soalan lagi!'
+};
+const shownMilestones = new Set();
+
+function checkMilestone() {
+  const n = Object.keys(userAnswers).length;
+  if (MILESTONES[n] && !shownMilestones.has(n)) {
+    shownMilestones.add(n);
+    showToast(MILESTONES[n]);
+  }
+}
+
+function showToast(msg, duration) {
+  duration = duration || 2800;
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('fade-out');
+    setTimeout(() => toast.remove(), 350);
+  }, duration);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// SUBMIT MODAL
+// ════════════════════════════════════════════════════════════════════════
+function showSubmitModal() {
+  const unanswered = shuffledQ.length - Object.keys(userAnswers).length;
+  const warn = document.getElementById('modalWarn');
+  if (unanswered > 0) {
+    warn.style.display = 'block';
+    warn.textContent = `⚠️ ${unanswered} soalan belum dijawab. Soalan tersebut akan dikira salah.`;
+  } else {
+    warn.style.display = 'none';
+  }
+  document.getElementById('submitModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('submitModal').classList.remove('active');
+}
+document.getElementById('submitModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ════════════════════════════════════════════════════════════════════════
+// SUBMIT & GRADE
+// ════════════════════════════════════════════════════════════════════════
+function submitExam() {
+  clearInterval(timerInterval);
+  examActive = false;
+  window.onbeforeunload = null;
+  closeModal();
+
+  let correct = 0;
+  shuffledQ.forEach((q, qi) => { if (userAnswers[qi] === q.correct) correct++; });
+
+  const total = shuffledQ.length;
+  const pct   = Math.round((correct / total) * 100);
+
+  saveHistory(correct);
+
+  // Grade config
+  const gradeConfig = pct >= 90 ? { cls:'pakar',    label:'🏆 Pakar Kurikulum',  color:'var(--amber)' }
+                    : pct >= 75 ? { cls:'cemerlang', label:'🥇 Cemerlang',         color:'var(--indigo)' }
+                    : pct >= 60 ? { cls:'baik',      label:'🥈 Baik',              color:'var(--green)' }
+                    : pct >= 50 ? { cls:'lulus',     label:'🥉 Lulus',             color:'var(--teal)' }
+                    :             { cls:'cuba',      label:'📚 Cuba Lagi',         color:'var(--muted)' };
+
+  // Grade badge
+  const badge = document.getElementById('gradeBadge');
+  badge.className = `grade-badge ${gradeConfig.cls}`;
+  badge.innerHTML = gradeConfig.label;
+
+  // Score ring — count up
+  const ring = document.getElementById('scoreRing');
+  ring.style.setProperty('--ring-color', gradeConfig.color);
+  ring.style.setProperty('--pct', '0%');
+  const scoreEl = document.getElementById('scoreNum');
+  scoreEl.textContent = '0';
+  let counted = 0;
+  const countTimer = setInterval(() => {
+    counted++;
+    scoreEl.textContent = counted;
+    ring.style.setProperty('--pct', Math.round((counted/total)*100) + '%');
+    if (counted >= correct) clearInterval(countTimer);
+  }, 1200 / correct || 30);
+
+  // Stats
+  document.getElementById('statCorrect').textContent = correct;
+  document.getElementById('statWrong').textContent   = total - correct;
+  document.getElementById('statPct').textContent     = pct + '%';
+
+  // Topic mastery
+  buildMastery(correct, total);
+
+  // Streak detection
+  detectStreak();
+
+  // Blind spot detection (confident + wrong)
+  detectBlindSpots();
+
+  // Weak topics button
+  if (weakTopics.length) {
+    document.getElementById('btnWeak').style.display = '';
+  } else {
+    document.getElementById('btnWeak').style.display = 'none';
+  }
+
+  // Build review
+  buildReview();
+
+  showScreen('screen-results');
+  try { window.scrollTo({ top:0, behavior:'smooth' }); } catch(e) { window.scrollTo(0,0); }
+
+  // Confetti if score >= 80%
+  if (pct >= 80) setTimeout(launchConfetti, 600);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// TOPIC MASTERY
+// ════════════════════════════════════════════════════════════════════════
+function buildMastery(correctTotal, total) {
+  const topicStats = {};
+  shuffledQ.forEach((q, qi) => {
+    const t = q.topic;
+    if (!topicStats[t]) topicStats[t] = { correct: 0, total: 0 };
+    topicStats[t].total++;
+    if (userAnswers[qi] === q.correct) topicStats[t].correct++;
+  });
+
+  weakTopics = [];
+  const container = document.getElementById('masteryRows');
+  container.innerHTML = '';
+
+  const sorted = Object.entries(topicStats).sort((a,b) => {
+    return (a[1].correct/a[1].total) - (b[1].correct/b[1].total);
+  });
+
+  sorted.forEach(([topic, stats]) => {
+    const pct = Math.round((stats.correct / stats.total) * 100);
+    const tIdx = ALL_TOPICS.findIndex(t => topic.startsWith(t.split(':')[0]));
+    const color = TOPIC_COLORS[tIdx] || 'var(--indigo)';
+    if (pct < 60) weakTopics.push(topic.split(':')[0]);
+
+    const row = document.createElement('div');
+    row.className = 'mastery-row';
+    row.innerHTML = `
+      <div class="mastery-label" title="${topic}">${topic.split(':')[0]}</div>
+      <div class="mastery-bar-wrap">
+        <div class="mastery-bar-fill" style="background:${color};width:0%;" data-pct="${pct}"></div>
+      </div>
+      <div class="mastery-pct" style="color:${color}">${pct}%</div>`;
+    container.appendChild(row);
+  });
+
+  // Animate bars after a moment
+  setTimeout(() => {
+    qsa('.mastery-bar-fill').forEach(bar => {
+      bar.style.width = bar.getAttribute('data-pct') + '%';
+    });
+  }, 400);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// STREAK DETECTION
+// ════════════════════════════════════════════════════════════════════════
+function detectStreak() {
+  let maxStreak = 0, curStreak = 0, maxTopic = '';
+  shuffledQ.forEach((q, qi) => {
+    if (userAnswers[qi] === q.correct) {
+      curStreak++;
+      if (curStreak > maxStreak) { maxStreak = curStreak; maxTopic = q.topic.split(':')[0]; }
+    } else { curStreak = 0; }
+  });
+  if (maxStreak >= 3) {
+    document.getElementById('streakBanner').classList.add('show');
+    document.getElementById('streakText').textContent =
+      `${maxStreak} jawapan betul berturut-turut pada bahagian ${maxTopic}! 🔥`;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// BLIND SPOT DETECTION
+// ════════════════════════════════════════════════════════════════════════
+function detectBlindSpots() {
+  const blindItems = [];
+  shuffledQ.forEach((q, qi) => {
+    if (confidence[qi] === 'pasti' && userAnswers[qi] !== q.correct) {
+      blindItems.push(`Soalan ${qi+1}: ${q.question.substring(0, 50)}...`);
+    }
+  });
+  if (blindItems.length) {
+    document.getElementById('blindspotBanner').classList.add('show');
+    document.getElementById('blindspotList').innerHTML =
+      blindItems.map(s => `• ${s}`).join('<br>');
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// REVIEW CARDS
+// ════════════════════════════════════════════════════════════════════════
+function buildReview() {
+  const container = document.getElementById('reviewCards');
+  container.innerHTML = '';
+  shuffledQ.forEach((q, qi) => {
+    const userAns   = userAnswers[qi];
+    const isCorrect = userAns === q.correct;
+    const isSkipped = userAns === undefined;
+    const conf      = confidence[qi];
+    const isBlind   = conf === 'pasti' && !isCorrect && !isSkipped;
+
+    const status    = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'incorrect');
+    const statusLbl = isSkipped ? 'Tidak Dijawab' : (isCorrect ? '✓ Betul' : '✗ Salah');
+    const confLbl   = conf ? { ragu:'😐 Ragu-ragu', yakin:'🙂 Yakin', pasti:'😎 Pasti' }[conf] : '';
+
+    const card = document.createElement('div');
+    card.className = `review-card ${status}`;
+
+    card.innerHTML = `
+      ${isBlind ? '<div class="blind-spot-tag">⚠️ Titik Buta</div>' : ''}
+      <div class="review-top">
+        <span class="review-status ${status}">${statusLbl}</span>
+        <span class="review-qnum">S${qi+1} · ${q.topic}</span>
+        ${confLbl ? `<span class="conf-tag">${confLbl}</span>` : ''}
+      </div>
+      <div class="review-q-text">${q.question}</div>
+      <div class="review-options">
+        ${q.options.map((opt, oi) => {
+          let cls = '';
+          if (oi === q.correct) cls = 'is-correct';
+          else if (oi === userAns && !isCorrect) cls = 'is-wrong';
+          const ltr = oi === q.correct ? '✓' : (oi === userAns && !isCorrect ? '✗' : 'ABCD'[oi]);
+          return `<div class="review-opt ${cls}"><span class="opt-l">${ltr}</span><span class="opt-t">${opt}</span></div>`;
+        }).join('')}
+      </div>
+      <div class="explanation-box">
+        <strong>📖 Penjelasan:</strong> ${q.explanation}
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+function scrollToReview() {
+  try {
+    document.getElementById('reviewSection').scrollIntoView({ behavior:'smooth' });
+  } catch(e) {
+    document.getElementById('reviewSection').scrollIntoView(true);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// CONFETTI
+// ════════════════════════════════════════════════════════════════════════
+function launchConfetti() {
+  const wrap   = document.getElementById('confettiWrap');
+  const colors = ['#818cf8','#34d399','#fbbf24','#fb7185','#2dd4bf','#a78bfa','#60a5fa'];
+  wrap.innerHTML = '';
+
+  for (let i = 0; i < 80; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const left  = Math.random() * 100;
+    const delay = Math.random() * 1.5;
+    const dur   = 2 + Math.random() * 2;
+    const dx    = (Math.random() - 0.5) * 200;
+    el.style.cssText = `
+      left:${left}%;
+      background:${color};
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+      --dx:${dx}px;
+      width:${6 + Math.random()*6}px;
+      height:${10 + Math.random()*8}px;
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    wrap.appendChild(el);
+  }
+  setTimeout(() => { wrap.innerHTML = ''; }, 5000);
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// HOME NAVIGATION
+// ════════════════════════════════════════════════════════════════════════
+function showHomeModal() {
+  document.getElementById('homeModal').classList.add('active');
+}
+
+function closeHomeModal() {
+  document.getElementById('homeModal').classList.remove('active');
+}
+
+function goHome() {
+  // Stop timer if running
+  if (typeof timerInterval !== 'undefined' && timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  examActive = false;
+  // Hide home modal if open
+  document.getElementById('homeModal').classList.remove('active');
+  // Hide mode badge
+  document.getElementById('modeBadge').classList.remove('show');
+  // Reset state
+  userAnswers = {};
+  confidence  = {};
+  shuffledQ   = [];
+  currentQ    = 0;
+  examMode    = 'exam';
+  practiceAnswered = {};
+  shownMilestones.clear();
+  // Go back to landing
+  showScreen('screen-landing');
+  try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) { window.scrollTo(0, 0); }
+}
+
+// ════════════════════════════════════════════════════════════════════════
+// iOS PERFORMANCE
+// ════════════════════════════════════════════════════════════════════════
+document.addEventListener('touchstart', function(){}, { passive: true });
+document.addEventListener('touchmove',  function(){}, { passive: true });
+
+// Keyboard support for mode cards
+document.getElementById('modeExam').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') selectMode('exam');
+});
+document.getElementById('modePractice').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') selectMode('practice');
+});
+</script>
+</body>
+</html>
