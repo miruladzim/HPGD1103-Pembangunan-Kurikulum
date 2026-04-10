@@ -1169,6 +1169,93 @@ button {
 .btn-home-confirm:active { transform: scale(0.97); }
 
 
+/* ── BLITZ HOME BUTTON ──────────────────────────────── */
+.blitz-wrap .blitz-home-btn {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top, 14px));
+  left: max(16px, env(safe-area-inset-left, 16px));
+  z-index: 20;
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 13px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 99px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.blitz-wrap .blitz-home-btn:hover  { border-color: var(--false); color: var(--false); transform: translateY(-1px); }
+.blitz-wrap .blitz-home-btn:active { transform: scale(0.96); }
+
+/* In-game home icon button (compact, sits in header row) */
+.blitz-wrap .blitz-game-home-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.blitz-wrap .blitz-game-home-btn:hover  { border-color: var(--false); background: rgba(255,61,113,0.1); transform: scale(1.08); }
+.blitz-wrap .blitz-game-home-btn:active { transform: scale(0.94); }
+
+/* Blitz quit confirmation modal */
+.blitz-quit-overlay {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.blitz-quit-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+.blitz-quit-box {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  max-width: 320px; width: 100%;
+  text-align: center;
+  animation: modalIn 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+.blitz-quit-icon { font-size: 2rem; margin-bottom: 10px; }
+.blitz-quit-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--text); margin-bottom: 6px;
+}
+.blitz-quit-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.blitz-quit-btns { display: flex; gap: 10px; }
+.blitz-quit-cancel {
+  flex: 1; padding: 11px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; touch-action: manipulation;
+  transition: border-color 0.18s;
+}
+.blitz-quit-cancel:hover { border-color: var(--muted); }
+.blitz-quit-confirm {
+  flex: 1; padding: 11px;
+  background: var(--false);
+  border: none; border-radius: 10px; color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem; font-weight: 800;
+  cursor: pointer; touch-action: manipulation;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 14px rgba(255,61,113,0.35);
+}
+.blitz-quit-confirm:hover  { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,61,113,0.45); }
+.blitz-quit-confirm:active { transform: scale(0.97); }
+
 /* ── BLITZ MODE CARD ────────────────────────────────── */
 .mode-card.blitz-mode { border-color: var(--border); }
 .mode-card.blitz-mode.selected {
@@ -1252,7 +1339,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    LANDING
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-landing {
+  .blitz-wrap #blitz-s-landing {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   align-items: center;
@@ -1409,7 +1496,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    COUNTDOWN SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-countdown {
+  .blitz-wrap #blitz-s-countdown {
   min-height: 100vh; min-height: -webkit-fill-available;
   align-items: center; justify-content: center;
 }
@@ -1437,7 +1524,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    GAME SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-game {
+  .blitz-wrap #blitz-s-game {
   min-height: 100vh; min-height: -webkit-fill-available;
   flex-direction: column;
 }
@@ -1745,7 +1832,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    RESULTS SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-results {
+  .blitz-wrap #blitz-s-results {
   min-height: 100vh; min-height: -webkit-fill-available;
   align-items: stretch;
 }
@@ -2018,7 +2105,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    LANDING
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-landing {
+  .blitz-wrap #blitz-s-landing {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   align-items: center;
@@ -2175,7 +2262,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    COUNTDOWN SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-countdown {
+  .blitz-wrap #blitz-s-countdown {
   min-height: 100vh; min-height: -webkit-fill-available;
   align-items: center; justify-content: center;
 }
@@ -2203,7 +2290,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    GAME SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-game {
+  .blitz-wrap #blitz-s-game {
   min-height: 100vh; min-height: -webkit-fill-available;
   flex-direction: column;
 }
@@ -2511,7 +2598,7 @@ button {
 /* ══════════════════════════════════════════════════════════════════
    RESULTS SCREEN
 ══════════════════════════════════════════════════════════════════ */
-  .blitz-wrap #s-results {
+  .blitz-wrap #blitz-s-results {
   min-height: 100vh; min-height: -webkit-fill-available;
   align-items: stretch;
 }
@@ -2710,6 +2797,19 @@ button {
 
 <div class="bg-grid"></div>
 
+<!-- ══ QUIT CONFIRM MODAL ════════════════════════════════════════ -->
+<div class="blitz-quit-overlay" id="blitz-quitOverlay">
+  <div class="blitz-quit-box">
+    <div class="blitz-quit-icon">🚪</div>
+    <div class="blitz-quit-title">Keluar dari Blitz?</div>
+    <div class="blitz-quit-desc">Permainan semasa akan tamat dan markah tidak akan disimpan.</div>
+    <div class="blitz-quit-btns">
+      <button type="button" class="blitz-quit-cancel" onclick="blitz_cancelQuit()">Teruskan</button>
+      <button type="button" class="blitz-quit-confirm" onclick="blitz_goHome()">Ya, Keluar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ FEEDBACK ELEMENTS ════════════════════════════════════════ -->
 <div class="feedback-flash" id="blitz-feedbackFlash"></div>
 <div class="feedback-toast" id="blitz-feedbackToast">
@@ -2725,6 +2825,7 @@ button {
 
 <!-- ══ LANDING ══════════════════════════════════════════════════ -->
 <div class="blitz-screen active" id="blitz-s-landing">
+  <button type="button" class="blitz-home-btn" onclick="blitz_goHome()">🏠 Menu</button>
   <div class="landing-glow"></div>
   <div class="landing-inner">
     <div class="game-badge">⚡ HPGD1103 · Blitz Game</div>
@@ -2798,6 +2899,7 @@ button {
     <div class="streak-badge" id="blitz-streakBadge">
       <span>🔥</span><span id="blitz-streakNum">0</span>
     </div>
+    <button type="button" class="blitz-game-home-btn" onclick="blitz_confirmHome()" title="Keluar ke menu">🏠</button>
   </div>
 
   <div class="progress-dots" id="blitz-progressDots"></div>
@@ -5592,7 +5694,19 @@ function blitz_goHome() {
   gameRunning = false;
   const tuo = document.getElementById('blitz-timesUpOverlay');
   if (tuo) tuo.classList.remove('show');
+  const qo = document.getElementById('blitz-quitOverlay');
+  if (qo) qo.classList.remove('show');
   closeBlitz();
+}
+
+function blitz_confirmHome() {
+  // If game is not running (on landing/results), just go home directly
+  if (!gameRunning) { blitz_goHome(); return; }
+  document.getElementById('blitz-quitOverlay').classList.add('show');
+}
+
+function blitz_cancelQuit() {
+  document.getElementById('blitz-quitOverlay').classList.remove('show');
 }
 
 // ══════════════════════════════════════════════════════════════════
