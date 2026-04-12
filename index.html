@@ -3771,22 +3771,6 @@ button {
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     SUBMIT MODAL
-═══════════════════════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="submitModal">
-  <div class="modal-box">
-    <div class="modal-icon">📤</div>
-    <div class="modal-title">Hantar Peperiksaan?</div>
-    <div class="modal-desc">Anda akan menghantar semua jawapan. Tindakan ini tidak boleh dibatalkan.</div>
-    <div class="modal-warn" id="modalWarn"></div>
-    <div class="modal-btns">
-      <button type="button" class="btn-cancel" onclick="closeModal()">Batal</button>
-      <button type="button" class="btn-confirm" onclick="submitExam()">Ya, Hantar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
      HOME CONFIRMATION MODAL
 ═══════════════════════════════════════════════════════════════════ -->
 <div class="modal-overlay" id="homeModal">
@@ -5499,7 +5483,8 @@ function selectMode(mode) {
   const practiceSel = document.getElementById('practiceSetSelector');
   if (examSel)     examSel.classList.toggle('show',     mode === 'exam');
   if (practiceSel) practiceSel.classList.toggle('show', mode === 'practice');
-  document.getElementById('ruleTimer').style.opacity = mode === 'practice' ? '0.4' : '1';
+  const ruleTimer = document.getElementById('ruleTimer');
+  if (ruleTimer) ruleTimer.style.opacity = mode === 'practice' ? '0.4' : '1';
   document.getElementById('timerWrap').style.display = mode === 'practice' ? 'none' : 'flex';
 }
 
