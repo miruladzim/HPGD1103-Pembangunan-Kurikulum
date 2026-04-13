@@ -221,16 +221,22 @@ button {
 #screen-landing {
   min-height: 100vh; min-height: -webkit-fill-available;
   display: none; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 60px 20px 40px;
-  position: relative; overflow: hidden;
+  align-items: center; justify-content: flex-start;
+  padding: 80px 16px 40px;
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 #screen-landing.active { display: flex; }
+
+@media (max-width: 480px) {
+  #screen-landing { padding: 70px 14px 32px; }
+}
 
 /* animated gradient mesh bg */
 #screen-landing::before {
   content: '';
-  position: absolute; inset: 0; pointer-events: none;
+  position: fixed; inset: 0; pointer-events: none;
   background:
     radial-gradient(ellipse at 15% 25%, rgba(123,140,255,0.2) 0%, transparent 50%),
     radial-gradient(ellipse at 85% 70%, rgba(51,217,136,0.12) 0%, transparent 50%),
@@ -261,22 +267,31 @@ button {
 /* Attempt history strip */
 .history-strip {
   display: none;
-  align-items: center; justify-content: center; gap: 8px;
+  align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 4px 6px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 99px;
-  padding: 7px 18px;
-  font-size: 0.75rem; color: var(--muted);
+  padding: 6px 16px;
+  font-size: 0.72rem; color: var(--muted);
   margin-bottom: 20px;
   animation: fadeUp 0.4s ease;
   -webkit-backdrop-filter: var(--glass-blur-sm); backdrop-filter: var(--glass-blur-sm);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .history-strip.show { display: flex; }
-.history-strip .hs-score {
-  font-weight: 800; color: var(--indigo);
-  display: flex; align-items: center; gap: 4px;
+.history-strip .hs-label {
+  font-size: 0.72rem; color: var(--muted); white-space: nowrap;
 }
-.history-strip .hs-arrow { color: var(--green); font-size: 0.8rem; }
+.history-strip .hs-score {
+  font-size: 0.72rem; font-weight: 800; color: var(--indigo);
+  display: inline; white-space: nowrap;
+}
+.history-strip .hs-arrow {
+  font-size: 0.65rem; display: inline; margin: 0 2px;
+}
 
 .exam-eyebrow {
   display: inline-flex; align-items: center; gap: 7px;
@@ -294,7 +309,7 @@ button {
 
 .landing-title {
   font-family: 'Nunito', sans-serif;
-  font-size: clamp(1.9rem, 6vw, 3.2rem);
+  font-size: clamp(1.6rem, 5.5vw, 3.2rem);
   font-weight: 900;
   line-height: 1.14;
   color: var(--text);
@@ -1080,7 +1095,7 @@ button {
 
 /* Review section */
 .review-section { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
-.review-section h2 { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--text); margin-bottom:16px; padding-top:8px; }
+.review-section h2 { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.3rem; color:var(--text); margin-bottom:16px; padding-top:8px; }
 
 .review-card {
   background: var(--glass-bg);
@@ -3223,12 +3238,14 @@ button {
 /* Landing */
 .mochi-landing {
   flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: center; justify-content: flex-start;
   padding: 60px 20px 40px; text-align: center;
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .mochi-landing::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
     radial-gradient(ellipse at 20% 30%, rgba(244,162,97,0.18) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 70%, rgba(231,111,81,0.12) 0%, transparent 55%);
@@ -3416,12 +3433,13 @@ button {
 .flash-landing {
   flex: 1; position: relative;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: center; justify-content: flex-start;
   padding: 70px 20px 40px;
-  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .flash-landing::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
     radial-gradient(ellipse at 20% 20%, rgba(45,212,191,0.18) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 75%, rgba(167,139,250,0.14) 0%, transparent 55%),
@@ -3858,11 +3876,13 @@ button {
 /* ── LANDING ── */
 .match-landing {
   flex: 1; position: relative; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 72px 20px 44px; overflow: hidden;
+  align-items: center; justify-content: flex-start;
+  padding: 72px 20px 44px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .match-landing::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
     radial-gradient(ellipse at 15% 30%, rgba(251,191,36,0.18) 0%, transparent 55%),
     radial-gradient(ellipse at 82% 70%, rgba(129,140,248,0.14) 0%, transparent 55%),
@@ -4713,7 +4733,7 @@ button {
   <div class="landing-inner">
 
     <div class="history-strip" id="historyStrip">
-      <span>📈 Rekod Lepas:</span>
+      <span class="hs-label">📈 Rekod:</span>
       <span id="historyScores"></span>
     </div>
 
@@ -6588,125 +6608,324 @@ const QUESTION_BANK_3 = [
 ];
 
 // ════════════════════════════════════════════════════════════════════════
-// QUESTION BANK 4  —  Set 4: Model Tyler, Reka Bentuk, Penentangan & Lewin
+// QUESTION BANK 4  —  Set 4 (v2): Definisi, Falsafah, Psikologi, Model & Reka Bentuk
 // ════════════════════════════════════════════════════════════════════════
 const QUESTION_BANK_4 = [
-  // ── BAHAGIAN A: MODEL TYLER (Soalan 1–10) ───────────────────────────
+  // ── BAHAGIAN A: DEFINISI, KURIKULUM TERSEMBUNYI & PENDEKATAN (Q1-5) ─
   {
-    topic: "T5: Model Tyler",
+    topic: "T1: Apakah Kurikulum?",
     type: "recall",
-    question: "Pada tahun berapakah Ralph Tyler memperkenalkan model pembangunan kurikulum beliau?",
-    options: ["1945", "1949", "1952", "1962"],
+    question: "Siapakah yang digelar \'Bapa Kurikulum\' dan menulis buku bertajuk \'The Curriculum\' pada tahun 1918?",
+    options: ["Ralph Tyler", "Franklin Bobbitt", "Hilda Taba", "John Dewey"],
     correct: 1,
-    explanation: "Ralph Tyler memperkenalkan model beliau pada tahun 1949 melalui buku 'Basic Principles of Curriculum and Instruction', yang menggariskan 4 soalan asas pembangunan kurikulum."
+    explanation: "Franklin Bobbitt digelar \'Bapa Kurikulum\' kerana beliau menulis buku \'The Curriculum\' (1918) — buku pertama yang membincangkan kurikulum sebagai bidang kajian yang sistematik."
   },
   {
-    topic: "T5: Model Tyler",
+    topic: "T1: Apakah Kurikulum?",
     type: "recall",
-    question: "Apakah tajuk buku klasik Ralph Tyler yang memperkenalkan model kurikulum beliau?",
+    question: "Siapakah yang mencipta frasa \'kurikulum tersembunyi\' (hidden curriculum) melalui bukunya \'Life in Classrooms\' pada tahun 1968?",
+    options: ["Doll (1992)", "Tanner (1980)", "Philip Jackson", "Schubert (1987)"],
+    correct: 2,
+    explanation: "Philip Jackson memperkenalkan konsep \'kurikulum tersembunyi\' dalam \'Life in Classrooms\' (1968) — nilai, norma dan hierarki yang diajar secara tidak formal di sekolah."
+  },
+  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "recall",
+    question: "Apakah yang dimaksudkan dengan \'kurikulum tersembunyi\'?",
     options: [
-      "Curriculum Development: Theory and Practice",
-      "The Child and the Curriculum",
-      "Basic Principles of Curriculum and Instruction",
-      "Curriculum Planning and Development"
+      "Kurikulum yang hanya diajar kepada pelajar cemerlang",
+      "Keseluruhan rangkaian pengalaman pendidikan yang dipromosikan oleh sekolah melalui amalan yang tidak semestinya ditulis",
+      "Kurikulum yang diterbitkan oleh Kementerian Pendidikan sahaja",
+      "Kurikulum yang tidak diluluskan oleh pihak berkuasa pendidikan"
+    ],
+    correct: 1,
+    explanation: "Kurikulum tersembunyi merujuk kepada pengalaman, nilai dan norma yang disampaikan secara tidak langsung melalui budaya sekolah, rutin harian dan interaksi — bukan melalui sukatan pelajaran formal."
+  },
+  {
+    topic: "T1: Apakah Kurikulum?",
+    type: "recall",
+    question: "Dalam pendekatan \'kurikulum sebagai produk\', apakah yang menjadi fokus utama?",
+    options: [
+      "Interaksi antara guru, pelajar dan pengetahuan di dalam bilik darjah",
+      "Proses pembelajaran yang berlaku secara semula jadi",
+      "Penetapan objektif tingkah laku yang memberikan tanggapan jelas tentang hasil yang diingini",
+      "Kandungan mata pelajaran yang perlu disampaikan kepada pelajar"
     ],
     correct: 2,
-    explanation: "'Basic Principles of Curriculum and Instruction' (1949) adalah buku Tyler yang paling berpengaruh, mengandungi 4 soalan asas yang menjadi teras model pembangunan kurikulum beliau."
+    explanation: "Kurikulum sebagai produk menumpukan kepada objektif tingkah laku yang boleh diukur dan diperhatikan — ia menetapkan hasil pembelajaran yang jelas sebagai matlamat akhir."
   },
   {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Menurut Model Tyler, apakah soalan pertama yang perlu dijawab dalam pembangunan kurikulum?",
-    options: [
-      "Bagaimanakah pengalaman pendidikan boleh disusun dengan berkesan?",
-      "Apakah tujuan pendidikan yang perlu dicapai oleh sekolah?",
-      "Apakah pengalaman pendidikan yang boleh disediakan?",
-      "Bagaimanakah kita boleh menentukan sama ada tujuan telah dicapai?"
-    ],
-    correct: 1,
-    explanation: "Soalan pertama Tyler ialah mengenal pasti tujuan (matlamat) pendidikan. Matlamat ini kemudiannya menentukan pengalaman pembelajaran, susunan, dan kaedah penilaian."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Model Tyler mewakili urutan berapa langkah dalam pembangunan kurikulum?",
-    options: ["Tiga langkah", "Lima langkah", "Enam langkah", "Empat langkah"],
-    correct: 3,
-    explanation: "Model Tyler mengandungi 4 langkah: (1) Menentukan tujuan, (2) Memilih pengalaman pembelajaran, (3) Menyusun pengalaman, dan (4) Menilai keberkesanan."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Menurut Tyler, data untuk membangunkan objektif kurikulum boleh dikumpul daripada berapa sumber utama?",
-    options: ["Dua sumber", "Tiga sumber", "Empat sumber", "Lima sumber"],
-    correct: 1,
-    explanation: "Tyler mengenal pasti tiga sumber utama: (1) Pelajar, (2) Masyarakat semasa, dan (3) Cadangan pakar bidang subjek. Ketiga-tiga sumber ini memberi maklumat untuk membentuk objektif kurikulum."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Manakah antara berikut BUKAN merupakan sumber pengumpulan data objektif dalam Model Tyler?",
-    options: ["Bidang subjek", "Pelajar", "Masyarakat", "Kerajaan"],
-    correct: 3,
-    explanation: "Tiga sumber Tyler ialah pelajar, masyarakat, dan bidang subjek. Kerajaan bukan sumber langsung dalam model Tyler — walaupun dasar kerajaan boleh mempengaruhi kurikulum secara tidak langsung."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Dalam Model Tyler, objektif yang telah dikenal pasti perlu melalui dua skrin. Apakah kedua-dua skrin tersebut?",
-    options: [
-      "Skrin falsafah dan skrin sosiologi",
-      "Skrin psikologi dan skrin ekonomi",
-      "Skrin falsafah dan skrin psikologi",
-      "Skrin budaya dan skrin teknologi"
-    ],
-    correct: 2,
-    explanation: "Objektif Tyler disaring melalui: (1) Skrin falsafah pendidikan — memastikan objektif selaras dengan nilai sekolah, dan (2) Skrin psikologi pembelajaran — memastikan objektif sesuai dengan tahap perkembangan pelajar."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Apakah tujuan penilaian dalam Model Tyler?",
-    options: [
-      "Untuk menentukan kaedah pengajaran terbaik",
-      "Untuk menentukan sama ada kurikulum itu berkesan atau tidak",
-      "Untuk memilih bahan pengajaran yang sesuai",
-      "Untuk menetapkan objektif pembelajaran baharu"
-    ],
-    correct: 1,
-    explanation: "Penilaian dalam model Tyler bertujuan untuk menentukan sejauh mana kurikulum berjaya mencapai tujuan yang ditetapkan — ia adalah langkah keempat dan terakhir dalam proses pembangunan kurikulum."
-  },
-  {
-    topic: "T5: Model Tyler",
+    topic: "T1: Apakah Kurikulum?",
     type: "critical",
-    question: "Apakah kritikan utama terhadap Model Tyler yang sering dikemukakan oleh para sarjana?",
+    question: "Apakah perbezaan utama antara pendekatan \'kurikulum sebagai produk\' dengan \'kurikulum sebagai proses\'?",
     options: [
-      "Terlalu berpusatkan guru",
-      "Tidak mengambil kira keperluan pelajar",
-      "Terlalu linear, iaitu bersifat sebab dan akibat",
-      "Tidak sesuai untuk peringkat sekolah menengah"
-    ],
-    correct: 2,
-    explanation: "Sarjana mengkritik Model Tyler kerana sifatnya yang terlalu linear — ia menganggap pembangunan kurikulum berlaku secara urutan sebab-akibat yang kaku, sedangkan realiti pendidikan adalah lebih kompleks dan dinamik."
-  },
-  {
-    topic: "T5: Model Tyler",
-    type: "recall",
-    question: "Dalam Model Tyler, apakah yang dimaksudkan dengan 'elemen penyusunan' (organizing elements) dalam pengalaman pembelajaran?",
-    options: [
-      "Jadual waktu persekolahan",
-      "Idea, konsep, nilai, dan kemahiran yang dijalin ke dalam kurikulum",
-      "Buku teks dan bahan bantu mengajar",
-      "Penilaian formatif dan sumatif"
+      "Kurikulum sebagai produk menekankan penilaian, manakala kurikulum sebagai proses tidak",
+      "Kurikulum sebagai produk menumpukan objektif tingkah laku yang boleh diukur, manakala kurikulum sebagai proses melihat kepada interaksi guru, pelajar dan pengetahuan",
+      "Kurikulum sebagai proses hanya sesuai untuk sekolah menengah",
+      "Kurikulum sebagai produk tidak memerlukan guru yang terlatih"
     ],
     correct: 1,
-    explanation: "Elemen penyusunan Tyler merujuk kepada idea, konsep, nilai, dan kemahiran yang menjadi benang penghubung antara pengalaman pembelajaran yang berbeza — memastikan kesinambungan dan integrasi kurikulum."
+    explanation: "Produk = hasil akhir yang boleh diukur (objektif tingkah laku). Proses = pengalaman pembelajaran aktif yang berlaku melalui interaksi dinamik antara guru, pelajar dan pengetahuan dalam bilik darjah."
   },
-  // ── BAHAGIAN B: MODEL REKA BENTUK KURIKULUM (Soalan 11–25) ─────────
+  // ── BAHAGIAN B: FALSAFAH PENDIDIKAN (Q6-15) ──────────────────────────
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Falsafah pendidikan manakah yang dianggap paling konservatif dan berakar umbi dalam falsafah Plato dan Aristotle?",
+    options: ["Esensialisme", "Progresivisme", "Perenialisme", "Rekonstruksionisme"],
+    correct: 2,
+    explanation: "Perenialisme adalah falsafah paling konservatif — ia berpegang kepada idea-idea abadi Plato dan Aristotle bahawa kebenaran adalah universal dan tidak berubah sepanjang zaman."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Program \'Great Books\' (Buku Hebat) adalah ciri kurikulum falsafah yang mana?",
+    options: ["Esensialisme", "Rekonstruksionisme", "Progresivisme", "Perenialisme"],
+    correct: 3,
+    explanation: "Program \'Great Books\' diasaskan oleh Robert Hutchins dan Mortimer Adler sebagai ciri perenialisme — mengkaji 100 karya terbaik tamadun Barat sebagai asas pendidikan liberal."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Esensialisme pada mulanya dipopularkan pada tahun 1930-an oleh siapa?",
+    options: ["Robert Hutchins", "William Bagley", "John Dewey", "Theodore Brameld"],
+    correct: 1,
+    explanation: "William Bagley mempopularkan esensialisme pada 1930-an sebagai reaksi terhadap progresivisme. Beliau menekankan pengetahuan dan nilai teras yang perlu dikuasai oleh semua pelajar."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Apakah ciri utama bilik darjah berdasarkan falsafah esensialisme?",
+    options: [
+      "Bilik darjah berpusatkan pelajar di mana pelajar menentukan kandungan pembelajaran",
+      "Pengajaran berpusatkan guru, guru memutuskan perkara terpenting untuk dipelajari",
+      "Pelajar bebas meneroka tanpa bimbingan guru",
+      "Kurikulum berubah mengikut keperluan pelajar semasa"
+    ],
+    correct: 1,
+    explanation: "Esensialisme meletakkan guru sebagai autoriti — guru menentukan kandungan yang penting berdasarkan warisan ilmu yang kukuh, bukan mengikut kehendak atau minat semasa pelajar."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Siapakah tokoh yang paling bertanggungjawab terhadap perkembangan falsafah progresivisme dalam pendidikan?",
+    options: ["William Bagley", "Theodore Brameld", "John Dewey", "Robert Hutchins"],
+    correct: 2,
+    explanation: "John Dewey adalah bapa progresivisme — beliau percaya pendidikan harus bermula dari pengalaman pelajar (\'learning by doing\') dan relevan dengan kehidupan sebenar."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Rekonstruksionisme adalah falsafah yang terutamanya berkembang pada tahun 1930-an hingga 1960-an dan dikaitkan dengan idea siapa?",
+    options: ["Jean-Jacques Rousseau", "Theodore Brameld", "Abraham Maslow", "Carl Rogers"],
+    correct: 1,
+    explanation: "Theodore Brameld mengembangkan rekonstruksionisme — falsafah yang melihat sekolah sebagai agen utama perubahan dan pembinaan semula masyarakat yang lebih adil."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Al-Farabi (872-950 AD) menekankan bahawa pemahaman adalah lebih baik daripada hafalan. Apakah hujah beliau?",
+    options: [
+      "Hafalan membolehkan pelajar menjawab peperiksaan dengan lebih mudah",
+      "Pemahaman melibatkan makna, universal, dan undang-undang yang sah untuk semua, manakala hafalan hanya berkaitan dengan perincian yang hampir tidak berguna",
+      "Hafalan adalah cara terpantas untuk mempelajari ilmu baru",
+      "Pemahaman hanya sesuai untuk pelajar yang pintar"
+    ],
+    correct: 1,
+    explanation: "Al-Farabi berpendapat pemahaman menangkap prinsip universal yang boleh diaplikasi secara luas, manakala hafalan hanya menyimpan butiran spesifik yang terhad nilainya."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Confucius (551-479 SM) menyatakan bahawa \'Belajar tanpa terfikir ialah buruh hilang; terfikir tanpa belajar ialah bahaya.\' Apakah yang diungkapkan oleh pepatah ini?",
+    options: [
+      "Pembelajaran harus mengutamakan hafalan",
+      "Pembelajaran dan pemikiran reflektif saling melengkapi dan tidak boleh dipisahkan",
+      "Pelajar perlu menghafal semua maklumat sebelum mula berfikir",
+      "Pemikiran kritis tidak penting dalam pendidikan formal"
+    ],
+    correct: 1,
+    explanation: "Confucius mengajarkan keseimbangan antara pengambilan ilmu (belajar) dan refleksi kritis (berfikir) — kedua-duanya perlu berjalan serentak untuk menghasilkan pemahaman yang bermakna."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Apakah sumbangan utama Rabindranath Tagore (1861-1941) dalam bidang pendidikan?",
+    options: [
+      "Beliau mengutamakan pembelajaran akademik formal di dalam bilik darjah tertutup",
+      "Beliau mengasaskan sekolah di Santiniketan yang menekankan pembelajaran di alam terbuka dan pembangunan menyeluruh keperibadian individu",
+      "Beliau memperkenalkan sistem peperiksaan berpusat",
+      "Beliau mewajibkan penggunaan bahasa Inggeris sebagai bahasa pengantar"
+    ],
+    correct: 1,
+    explanation: "Tagore mengasaskan Santiniketan (1901) yang menggabungkan alam semula jadi dengan pembelajaran kreatif — menolak bilik darjah tertutup dan menekankan perkembangan menyeluruh jiwa dan intelek."
+  },
+  {
+    topic: "T2: Asas Falsafah",
+    type: "recall",
+    question: "Menurut Tagore, apakah komponen penting yang perlu ada dalam kurikulum sekolah selain pembangunan intelek?",
+    options: [
+      "Latihan ketenteraan dan disiplin ketat",
+      "Hafalan teks dan peperiksaan bertulis yang kerap",
+      "Muzik, seni, sastera, drama, dan tarian sebagai sebahagian daripada kehidupan harian sekolah",
+      "Pembelajaran bahasa asing sahaja"
+    ],
+    correct: 2,
+    explanation: "Tagore percaya seni dan kreativiti — muzik, drama, tarian, sastera — bukan sekadar aktiviti sampingan tetapi teras pendidikan yang membangunkan keperibadian menyeluruh."
+  },
+  // ── BAHAGIAN C: PERSPEKTIF PSIKOLOGI (Q16-20) ─────────────────────────
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Apakah andaian asas teori behaviourisme tentang pembelajaran?",
+    options: [
+      "Pembelajaran adalah proses pembinaan pengetahuan secara aktif dalam minda pelajar",
+      "Kajian saintifik psikologi mesti terhad kepada tingkah laku yang boleh diperhatikan dan rangsangan yang membawa kepadanya",
+      "Emosi dan perasaan pelajar adalah faktor terpenting dalam pembelajaran",
+      "Pelajar membina pengetahuan melalui interaksi sosial"
+    ],
+    correct: 1,
+    explanation: "Behaviourisme (Watson, Pavlov, Skinner) berpegang bahawa psikologi hanya boleh mengkaji tingkah laku yang boleh diperhatikan — proses mental dalaman diabaikan kerana tidak boleh diukur secara saintifik."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Apakah yang membezakan kognitivisme daripada behaviourisme dalam konteks pembelajaran?",
+    options: [
+      "Kognitivisme tidak menggunakan ujian dan penilaian",
+      "Kognitivisme meneliti peristiwa mental dan proses pemikiran dalaman pelajar yang diabaikan oleh behaviourisme",
+      "Kognitivisme hanya sesuai untuk pelajar dewasa",
+      "Behaviourisme lebih saintifik berbanding kognitivisme"
+    ],
+    correct: 1,
+    explanation: "Kognitivisme (Bruner, Ausubel) memberi tumpuan kepada proses pemikiran dalaman — ingatan, pemprosesan maklumat, penyelesaian masalah — yang dianggap \'kotak hitam\' oleh behaviouris."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Konstruktivisme berasal daripada karya ahli-ahli psikologi yang mana?",
+    options: [
+      "Pavlov, Skinner, dan Thorndike",
+      "Maslow, Rogers, dan Combs",
+      "Bruner, Piaget, dan Vygotsky",
+      "Hutchins, Adler, dan Bagley"
+    ],
+    correct: 2,
+    explanation: "Konstruktivisme berakar dari karya Piaget (perkembangan kognitif), Vygotsky (pembelajaran sosial dan ZPD) dan Bruner (penemuan terbimbing) — pelajar membina pengetahuan secara aktif."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Menurut Piaget, apakah tiga mekanisme pembinaan pengetahuan dalam konstruktivisme?",
+    options: [
+      "Hafalan, ulangan, dan peneguhan",
+      "Asimilasi, akomodasi, dan keseimbangan",
+      "Pemerhatian, peniruan, dan latihan",
+      "Penerimaan, pemprosesan, dan penyimpanan"
+    ],
+    correct: 1,
+    explanation: "Piaget mengenal pasti: Asimilasi (maklumat baru dimasukkan ke dalam skema sedia ada), Akomodasi (skema diubah untuk maklumat baru), dan Keseimbangan (keseimbangan antara keduanya)."
+  },
+  {
+    topic: "T3: Asas Psikologi",
+    type: "recall",
+    question: "Tiga tokoh utama yang menyumbang kepada kemunculan psikologi humanistik dalam pendidikan ialah?",
+    options: [
+      "Pavlov, Skinner, dan Bandura",
+      "Piaget, Vygotsky, dan Bruner",
+      "Abraham Maslow, Carl Rogers, dan Arthur Combs",
+      "Hutchins, Dewey, dan Freire"
+    ],
+    correct: 2,
+    explanation: "Humanisme dalam pendidikan dipelopori oleh Maslow (hierarki keperluan), Rogers (pembelajaran berpusatkan pelajar) dan Combs (tingkah laku bergantung kepada persepsi diri)."
+  },
+  // ── BAHAGIAN D: MODEL PEMBANGUNAN KURIKULUM (Q21-27) ─────────────────
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Ralph Tyler memperkenalkan model kurikulum beliau dalam buku \'Basic Principles of Curriculum and Instruction\' pada tahun berapakah?",
+    options: ["1945", "1947", "1949", "1952"],
+    correct: 2,
+    explanation: "Tyler menerbitkan \'Basic Principles of Curriculum and Instruction\' pada 1949 — mengandungi 4 soalan asas yang menjadi teras model rasional-linear yang paling berpengaruh dalam sejarah kurikulum."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Dalam Model Tyler, apakah dua skrin yang perlu dilalui oleh objektif sebelum ditetapkan sebagai objektif pengajaran khusus?",
+    options: [
+      "Skrin ekonomi dan skrin sosial",
+      "Skrin falsafah dan skrin psikologi",
+      "Skrin teknologi dan skrin budaya",
+      "Skrin akademik dan skrin vokasional"
+    ],
+    correct: 1,
+    explanation: "Dua skrin Tyler: (1) Falsafah — adakah objektif selaras dengan nilai dan falsafah sekolah? (2) Psikologi — adakah objektif sesuai dengan tahap perkembangan dan psikologi pelajar?"
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Apakah pendekatan yang dicadangkan oleh Hilda Taba berbeza daripada Tyler dalam pembangunan kurikulum?",
+    options: [
+      "Taba menekankan pentadbir sebagai penggerak utama kurikulum",
+      "Taba menggunakan pendekatan induktif bermula daripada unit pengajaran khusus yang direka oleh guru",
+      "Taba menolak keperluan penilaian dalam kurikulum",
+      "Taba mahu kurikulum dibangunkan oleh pelajar sendiri"
+    ],
+    correct: 1,
+    explanation: "Taba membalikkan model Tyler — beliau menggunakan pendekatan induktif (bawah ke atas) bermula dari guru membina unit pengajaran khusus, berbeza dengan Tyler yang bermula dari matlamat umum (atas ke bawah)."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Model Taba sering disebut sebagai \'model akar umbi\' (grass-roots model). Mengapa?",
+    options: [
+      "Kerana ia memerlukan tanah yang subur untuk dilaksanakan",
+      "Kerana ia bermula dari bawah iaitu guru yang mengajar kurikulum mengambil bahagian dalam membangunkannya",
+      "Kerana ia berasal daripada idea petani dan masyarakat luar bandar",
+      "Kerana ia melibatkan pelajar dari peringkat rendah"
+    ],
+    correct: 1,
+    explanation: "Model akar umbi bermaksud pembangunan kurikulum bermula dari peringkat bawah — guru di bilik darjah terlibat secara langsung dalam merancang dan membina kurikulum, bukan hanya menerimanya dari atas."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Dalam Model Saylor, Alexander, dan Lewis (1981), berapa domain utama yang dikenal pasti sebagai matlamat kurikulum?",
+    options: ["Dua domain", "Tiga domain", "Lima domain", "Empat domain"],
+    correct: 3,
+    explanation: "Model Saylor, Alexander dan Lewis mengenal pasti empat domain matlamat kurikulum: pembangunan peribadi, perhubungan manusia, kemahiran pembelajaran berterusan, dan pengkhususan."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Apakah empat domain utama dalam Model Saylor, Alexander, dan Lewis?",
+    options: [
+      "Kognitif, afektif, psikomotor, dan sosial",
+      "Pembangunan peribadi, perhubungan manusia, kemahiran pembelajaran berterusan, dan pengkhususan",
+      "Matlamat, reka bentuk, pelaksanaan, dan penilaian",
+      "Akademik, vokasional, kreativiti, dan kepimpinan"
+    ],
+    correct: 1,
+    explanation: "Empat domain Saylor et al.: (1) Pembangunan peribadi, (2) Perhubungan manusia, (3) Kemahiran pembelajaran berterusan, dan (4) Pengkhususan — menggambarkan keperluan individu dan masyarakat secara menyeluruh."
+  },
+  {
+    topic: "T5: Perancangan Kurikulum",
+    type: "recall",
+    question: "Apakah perbezaan utama antara domain kognitif, afektif, dan psikomotor dalam Taksonomi Bloom?",
+    options: [
+      "Kognitif berkaitan kemahiran fizikal, afektif berkaitan intelek, psikomotor berkaitan emosi",
+      "Kognitif berkaitan kebolehan intelek, afektif berkaitan emosi dan perasaan, psikomotor berkaitan kemahiran",
+      "Kognitif berkaitan kreativiti, afektif berkaitan komunikasi, psikomotor berkaitan penyelesaian masalah",
+      "Ketiga-tiga domain ini merujuk kepada perkara yang sama"
+    ],
+    correct: 1,
+    explanation: "Taksonomi Bloom: Kognitif = intelek dan pemikiran (pengetahuan→sintesis), Afektif = emosi, nilai dan sikap, Psikomotor = kemahiran fizikal dan koordinasi. Ketiga-tiga domain diperlukan untuk pendidikan menyeluruh."
+  },
+  // ── BAHAGIAN E: REKA BENTUK KURIKULUM (Q28-33) ────────────────────────
   {
     topic: "T6: Reka Bentuk Kurikulum",
     type: "recall",
-    question: "Apakah model reka bentuk kurikulum yang paling popular dan digunakan secara meluas dalam sistem persekolahan?",
+    question: "Apakah model reka bentuk kurikulum yang paling popular dan meluas digunakan dalam sistem sekolah?",
     options: [
       "Reka bentuk berpusatkan pelajar",
       "Reka bentuk berpusatkan masalah",
@@ -6714,348 +6933,167 @@ const QUESTION_BANK_4 = [
       "Reka bentuk humanistik"
     ],
     correct: 2,
-    explanation: "Reka bentuk berpusatkan subjek (subject-centred) adalah yang paling lazim digunakan kerana sejarahnya yang panjang dalam sistem persekolahan formal dan kemudahannya untuk dilaksanakan secara besar-besaran."
+    explanation: "Reka bentuk berpusatkan subjek adalah yang paling lazim kerana sejarahnya yang panjang, kemudahan pelaksanaan berskala besar, dan keselarasannya dengan sistem peperiksaan awam."
   },
   {
     topic: "T6: Reka Bentuk Kurikulum",
     type: "recall",
-    question: "Berapa jenis reka bentuk yang terdapat dalam model reka bentuk berpusatkan subjek?",
-    options: ["Tiga jenis", "Empat jenis", "Lima jenis", "Enam jenis"],
+    question: "Apakah perbezaan utama antara reka bentuk berpusatkan kanak-kanak dan reka bentuk radikal?",
+    options: [
+      "Reka bentuk berpusatkan kanak-kanak tidak melibatkan guru langsung",
+      "Reka bentuk radikal memberikan penekanan yang lebih besar kepada keperluan mereformasi masyarakat berbanding berpusatkan kanak-kanak",
+      "Reka bentuk radikal hanya sesuai untuk sekolah menengah atas",
+      "Kedua-duanya adalah sama sahaja"
+    ],
+    correct: 1,
+    explanation: "Berpusatkan kanak-kanak fokus kepada perkembangan semula jadi individu; reka bentuk radikal (Freire) pergi lebih jauh — pendidikan mesti mengubah struktur masyarakat yang menindas."
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "recall",
+    question: "Dalam reka bentuk berpusatkan masalah, apakah sumber masalah yang dibincangkan berbeza daripada reka bentuk berpusatkan pelajar?",
+    options: [
+      "Masalah berpunca daripada minat peribadi dan kecenderungan pelajar",
+      "Masalah berpunca daripada isu yang membimbangkan masyarakat, bukan keperluan peribadi pelajar",
+      "Masalah dipilih oleh guru semata-mata tanpa melibatkan pelajar",
+      "Masalah berpunca daripada sukatan pelajaran kerajaan sahaja"
+    ],
+    correct: 1,
+    explanation: "Perbezaan utama: reka bentuk pelajar bermula dari minat individu pelajar; reka bentuk masalah bermula dari isu sosial yang lebih luas yang perlu diselesaikan oleh masyarakat."
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "recall",
+    question: "Reka bentuk kurikulum bidang luas (broad field design) bertujuan untuk mengatasi apakah masalah?",
+    options: [
+      "Pelajar tidak minat belajar",
+      "Mata pelajaran yang diajar terlalu berpecah-belah dan tidak berhubung kait",
+      "Guru tidak mencukupi untuk mengajar semua mata pelajaran",
+      "Kekurangan bahan pengajaran yang mencukupi"
+    ],
+    correct: 1,
+    explanation: "Reka bentuk bidang luas menggabungkan beberapa mata pelajaran yang berkaitan (contoh: Sejarah + Geografi + Ekonomi = Kajian Sosial) untuk mengatasi masalah fragmentasi ilmu."
+  },
+  {
+    topic: "T6: Reka Bentuk Kurikulum",
+    type: "recall",
+    question: "Dalam reka bentuk teras (core design), apakah kaedah yang digunakan untuk menganalisis masalah sosial?",
+    options: [
+      "Kuliah syarahan oleh pakar dari luar sekolah",
+      "Hafalan fakta daripada buku teks",
+      "Pendekatan penyelesaian masalah di mana pelajar mengumpul, menganalisis, mentafsir dan membentangkan data",
+      "Ujian bertulis secara individu"
+    ],
     correct: 2,
-    explanation: "Lima jenis reka bentuk berpusatkan subjek: (1) Mata pelajaran akademik, (2) Bidang luas (broad field), (3) Korelasi, (4) Proses, dan (5) Teras (core). Setiap satu mempunyai pendekatan tersendiri."
+    explanation: "Reka bentuk teras menggunakan pendekatan inkuiri aktif — pelajar tidak sekadar menerima maklumat tetapi mengumpul data, menganalisis, mentafsir dan membentangkan dapatan mereka."
   },
   {
     topic: "T6: Reka Bentuk Kurikulum",
     type: "recall",
-    question: "Reka bentuk mata pelajaran akademik dianggap sebagai reka bentuk tertua. Apakah andaian asas reka bentuk ini?",
+    question: "Menurut reka bentuk humanistik, apakah peranan utama Carl Rogers dalam konteks pendidikan?",
     options: [
-      "Pelajar belajar melalui penyelesaian masalah sebenar",
-      "Manusia adalah unik kerana intelek mereka dan usaha untuk pemerolehan ilmu",
-      "Pembelajaran bermula daripada pengalaman harian pelajar",
-      "Kurikulum harus mereformasi masyarakat"
+      "Guru sebagai pemegang autoriti mutlak dalam bilik darjah",
+      "Guru sebagai fasilitator yang memudahkan pembelajaran dengan menerima pelajar sebagai manusia, mengambil berat perasaan dan pendapat mereka",
+      "Pelajar perlu menghafal semua fakta sebelum diberi kebebasan belajar",
+      "Kurikulum perlu berasaskan peperiksaan awam semata-mata"
     ],
     correct: 1,
-    explanation: "Reka bentuk mata pelajaran akademik berasaskan andaian bahawa manusia adalah makhluk yang unik kerana kemampuan intelek mereka. Tujuan pendidikan adalah untuk memupuk intelek melalui penguasaan ilmu yang tersusun."
+    explanation: "Rogers memperkenalkan \'student-centred learning\' — guru bukan autoriti tetapi fasilitator yang mewujudkan persekitaran selamat dan menerima pelajar seadanya untuk membolehkan pembelajaran bermakna berlaku."
   },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Reka bentuk bidang luas (broad field design) juga dikenali sebagai apakah?",
-    options: [
-      "Reka bentuk antara disiplin",
-      "Reka bentuk korelasi",
-      "Reka bentuk proses",
-      "Reka bentuk teras"
-    ],
-    correct: 0,
-    explanation: "Reka bentuk bidang luas juga dikenali sebagai reka bentuk antara disiplin kerana ia menggabungkan beberapa mata pelajaran yang berkaitan ke dalam satu bidang pembelajaran yang lebih luas, contohnya 'Kajian Sosial' menggabungkan sejarah, geografi, dan ekonomi."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Apakah contoh terbaik bagi reka bentuk proses (process design) dalam kurikulum?",
-    options: [
-      "Mata pelajaran kajian sosial",
-      "Pengajaran kemahiran berfikir",
-      "Kurikulum berpusatkan komuniti",
-      "Pendidikan vokasional"
-    ],
-    correct: 1,
-    explanation: "Reka bentuk proses memberi tumpuan kepada cara berfikir dan proses intelek, bukannya kandungan khusus. Pengajaran kemahiran berfikir (kritis, kreatif) adalah contoh terbaik kerana ia melatih proses mental pelajar."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Siapakah ahli falsafah yang menjadi penyokong awal kurikulum berpusatkan kanak-kanak melalui bukunya 'Emile'?",
-    options: ["John Dewey", "Jean-Jacques Rousseau", "Carl Rogers", "Paulo Freire"],
-    correct: 1,
-    explanation: "Jean-Jacques Rousseau dalam bukunya 'Emile' (1762) mencadangkan bahawa pendidikan harus mengikuti perkembangan semula jadi kanak-kanak, bukan memaksakan pengetahuan orang dewasa ke atas mereka."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Menurut John Dewey, kanak-kanak membawa berapa dorongan asas ke dalam bilik darjah?",
-    options: ["Dua dorongan", "Tiga dorongan", "Empat dorongan", "Lima dorongan"],
-    correct: 2,
-    explanation: "Dewey mengenal pasti empat dorongan asas kanak-kanak: (1) Dorongan sosial, (2) Dorongan konstruktif, (3) Dorongan ekspresif atau seni, dan (4) Dorongan inkuiri atau penyiasatan."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Dalam reka bentuk berpusatkan kanak-kanak, apakah strategi pedagogi yang popular digunakan?",
-    options: ["Kuliah syarahan", "Kaedah projek", "Hafalan teks", "Peperiksaan bertulis"],
-    correct: 1,
-    explanation: "Kaedah projek adalah strategi utama dalam reka bentuk berpusatkan kanak-kanak kerana ia membolehkan pelajar belajar melalui penyelidikan aktif, bekerja secara koperatif, dan menyelesaikan masalah sebenar."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Reka bentuk radikal (radical design) berbeza daripada reka bentuk berpusatkan kanak-kanak kerana ia lebih menekankan apakah?",
-    options: [
-      "Pemerolehan pengetahuan akademik",
-      "Keperluan untuk mereformasi masyarakat",
-      "Pembangunan kemahiran vokasional",
-      "Penggunaan teknologi dalam pengajaran"
-    ],
-    correct: 1,
-    explanation: "Reka bentuk radikal (seperti pendekatan Freire) menekankan transformasi sosial — sekolah bukan sahaja untuk perkembangan individu tetapi untuk mengubah struktur masyarakat yang tidak adil."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Siapakah tokoh yang terkenal dengan reka bentuk radikal dan menentang konsep pelajar sebagai 'wadah kosong'?",
-    options: ["Jean Piaget", "Lev Vygotsky", "Paulo Freire", "Benjamin Bloom"],
-    correct: 2,
-    explanation: "Paulo Freire dalam 'Pedagogy of the Oppressed' menentang konsep 'banking education' di mana pelajar dianggap sebagai wadah kosong yang diisi dengan pengetahuan. Beliau menyokong pendidikan dialogik untuk pembebasan."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Reka bentuk humanistik menjadi popular pada dekad yang manakah di Amerika Syarikat?",
-    options: ["1940-an dan 1950-an", "1960-an dan 1970-an", "1970-an dan 1980-an", "1950-an dan 1960-an"],
-    correct: 1,
-    explanation: "Reka bentuk humanistik mendapat populariti pada 1960-an dan 1970-an, seiring dengan gerakan hak sivil, kontra-budaya, dan penekanan terhadap kebebasan individu dan potensi manusia."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Siapakah tokoh yang mengasaskan reka bentuk humanistik yang berpendapat bahawa pendidikan bertujuan untuk memudahkan pembelajaran?",
-    options: ["Abraham Maslow", "Erik Erikson", "Carl Rogers", "Albert Bandura"],
-    correct: 2,
-    explanation: "Carl Rogers, pengasas psikologi humanistik, berpendapat bahawa pendidikan bertujuan untuk memudahkan ('facilitate') pembelajaran bermakna. Guru berperanan sebagai fasilitator, bukan pengajar autoriti."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "recall",
-    question: "Apakah fokus utama reka bentuk berpusatkan masalah (problem-centred design)?",
-    options: [
-      "Penguasaan kandungan mata pelajaran tertentu",
-      "Masalah yang dihadapi oleh masyarakat",
-      "Keperluan dan minat individu pelajar",
-      "Penilaian kemajuan akademik pelajar"
-    ],
-    correct: 1,
-    explanation: "Reka bentuk berpusatkan masalah menggunakan isu dan masalah sebenar masyarakat sebagai titik permulaan pembelajaran. Pelajar belajar kandungan akademik dalam konteks menyelesaikan masalah bermakna."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "critical",
-    question: "Apakah perbezaan utama antara reka bentuk berpusatkan masalah dengan reka bentuk berpusatkan pelajar?",
-    options: [
-      "Reka bentuk berpusatkan masalah tidak menggunakan buku teks",
-      "Masalah dalam reka bentuk berpusatkan masalah berpunca daripada isu masyarakat, bukan minat peribadi pelajar",
-      "Reka bentuk berpusatkan masalah hanya sesuai untuk sekolah menengah",
-      "Reka bentuk berpusatkan masalah tidak melibatkan guru"
-    ],
-    correct: 1,
-    explanation: "Walaupun kedua-dua reka bentuk menjauhi pendekatan berpusatkan subjek, perbezaannya adalah sumber masalah — reka bentuk pelajar bermula daripada minat peribadi pelajar, manakala reka bentuk masalah bermula dari isu masyarakat."
-  },
-  {
-    topic: "T6: Reka Bentuk Kurikulum",
-    type: "critical",
-    question: "Dalam reka bentuk teras (core design), apakah ciri pelaksanaannya yang membezakannya daripada reka bentuk situasi berpusatkan kehidupan?",
-    options: [
-      "Masalah tidak dipilih terlebih dahulu",
-      "Masalah tertentu dipilih untuk membentuk teras dan diajar kepada semua pelajar dalam format masa blok",
-      "Pelajar bebas memilih masalah mereka sendiri tanpa sebarang bimbingan",
-      "Reka bentuk teras tidak menggunakan pendekatan penyelesaian masalah"
-    ],
-    correct: 1,
-    explanation: "Reka bentuk teras menetapkan masalah/tema tertentu yang diajar kepada semua pelajar dalam blok masa yang lebih panjang, berbeza daripada situasi kehidupan yang lebih fleksibel. Ini memastikan semua pelajar mendapat asas yang sama."
-  },
-  // ── BAHAGIAN C: PENENTANGAN TERHADAP PERUBAHAN (Soalan 26–34) ──────
+  // ── BAHAGIAN F: PELAKSANAAN, PENENTANGAN & LEWIN (Q34-40) ────────────
   {
     topic: "T7: Pelaksanaan Kurikulum",
     type: "recall",
-    question: "Apakah sebab utama mengapa status quo cenderung untuk dikekalkan dalam sesebuah institusi pendidikan?",
+    question: "Menurut modul, apakah lima jenis perubahan kurikulum yang dikenal pasti oleh McNeil (2014)?",
     options: [
-      "Kekurangan dana untuk melaksanakan perubahan",
-      "Orang yang memperkenalkan perubahan tidak jelas tentang hasrat program baharu",
-      "Pelajar menolak kaedah pengajaran baharu",
-      "Kurikulum lama lebih berkesan daripada yang baharu"
+      "Penambahan, pengurangan, penyusunan semula, penilaian, dan cadangan",
+      "Penggantian, pengubahan, gangguan, penstrukturan semula, dan orientasi nilai",
+      "Perancangan, reka bentuk, pelaksanaan, penilaian, dan penambahbaikan",
+      "Inovasi, transformasi, reformasi, adaptasi, dan evolusi"
     ],
     correct: 1,
-    explanation: "Status quo dikekalkan apabila pemimpin perubahan gagal menyampaikan visi yang jelas. Ketidakjelasan tujuan menyebabkan guru dan warga sekolah terus dengan amalan sedia ada kerana tiada sebab kukuh untuk berubah."
+    explanation: "McNeil (2014) mengenal pasti lima jenis perubahan: (1) Penggantian, (2) Pengubahan, (3) Gangguan, (4) Penstrukturan semula, dan (5) Orientasi nilai — setiap satu berbeza dalam skop dan kedalaman perubahan."
   },
   {
     topic: "T7: Pelaksanaan Kurikulum",
     type: "recall",
-    question: "Menurut modul HPGD1103, apakah sebab utama yang mendorong guru untuk menentang perubahan kurikulum baharu?",
+    question: "Apakah sebab utama mengapa guru cenderung menentang perubahan kurikulum?",
     options: [
-      "Guru tidak bersetuju dengan falsafah pendidikan kerajaan",
-      "Guru melihat perubahan sebagai bermakna lebih banyak kerja tanpa ganjaran tambahan",
-      "Guru tidak diberi cuti untuk menghadiri latihan",
-      "Pelajar tidak bersedia untuk kurikulum baharu"
+      "Guru lebih suka bekerja tanpa sebarang panduan",
+      "Guru melihat perubahan sebagai bermakna lebih banyak kerja tanpa ganjaran tambahan yang setimpal",
+      "Guru tidak percaya kepada kepimpinan sekolah",
+      "Guru tidak tahu cara mengajar kurikulum baru"
     ],
     correct: 1,
-    explanation: "Guru menentang perubahan apabila mereka melihatnya sebagai beban tambahan tanpa manfaat atau ganjaran yang setimpal. Persepsi 'lebih kerja, sama bayar' adalah penghalang utama kepada penerimaan perubahan kurikulum."
+    explanation: "Persepsi \'lebih kerja, sama bayar\' adalah halangan utama — guru yang sudah terbeban dengan tanggungjawab sedia ada melihat perubahan sebagai beban tambahan tanpa manfaat yang jelas."
   },
   {
     topic: "T7: Pelaksanaan Kurikulum",
     type: "recall",
-    question: "Manakah antara berikut merupakan sebab utama orang menentang perubahan berdasarkan Jadual 7.3 dalam modul?",
+    question: "Apakah yang dimaksudkan dengan \'kekurangan pemilikan\' (lack of ownership) dalam konteks penentangan terhadap perubahan?",
     options: [
-      "Orang tidak faham perubahan yang dicadangkan",
-      "Perubahan berlaku terlalu lambat",
-      "Kurangnya sokongan daripada ibu bapa",
-      "Masalah prasarana sekolah"
-    ],
-    correct: 0,
-    explanation: "Ketidakfahaman tentang tujuan, proses, dan implikasi perubahan adalah sebab utama penentangan. Apabila orang tidak memahami mengapa perubahan diperlukan dan apa yang akan berubah, mereka secara semula jadi akan menentangnya."
-  },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "recall",
-    question: "Apakah penyelesaian yang dicadangkan bagi mengatasi masalah 'orang tidak faham perubahan'?",
-    options: [
-      "Memaksa guru mengikuti latihan",
-      "Memberikan ganjaran kewangan yang lebih tinggi",
-      "Komunikasi yang berkesan dengan menerangkan Mengapa, Apa, Bila, Bagaimana dan Di Mana",
-      "Menggantikan guru yang menentang perubahan"
-    ],
-    correct: 2,
-    explanation: "Komunikasi yang berkesan dan telus adalah kunci — pemimpin perubahan perlu menjawab soalan 5W1H (Mengapa, Apa, Bila, Bagaimana, Di Mana) untuk memastikan semua pihak faham sepenuhnya tentang perubahan yang akan dilaksanakan."
-  },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "recall",
-    question: "Apakah yang dimaksudkan dengan 'kekurangan pemilikan' (lack of ownership) sebagai sebab penentangan terhadap perubahan?",
-    options: [
-      "Guru tidak mempunyai buku teks yang mencukupi",
+      "Guru tidak mempunyai alat tulis dan buku yang mencukupi",
       "Individu tidak akan menerima perubahan jika mereka menganggap ia datang dari luar atau dikenakan ke atas mereka",
-      "Pelajar tidak memiliki alat tulis yang diperlukan",
-      "Sekolah tidak mempunyai bilik darjah yang mencukupi"
+      "Sekolah tidak memiliki kemudahan yang mencukupi untuk kurikulum baru",
+      "Pelajar tidak berminat untuk belajar mata pelajaran baru"
     ],
     correct: 1,
-    explanation: "Kekurangan pemilikan berlaku apabila guru dan warga sekolah berasa perubahan 'dikenakan' ke atas mereka tanpa penglibatan mereka. Perubahan yang berkesan memerlukan pemilikan bersama (shared ownership)."
+    explanation: "Kekurangan pemilikan berlaku apabila perubahan dirasakan \'diimport\' dari luar — guru tidak terlibat dalam proses pembangunan dan akibatnya tidak merasa bertanggungjawab untuk kejayaannya."
   },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "recall",
-    question: "Bagaimana cara mengatasi masalah 'kekurangan pemilikan' dalam pelaksanaan kurikulum?",
-    options: [
-      "Mewajibkan semua guru menghadiri kursus",
-      "Melibatkan guru dalam meneroka kaitan kurikulum baharu dan memberi kebebasan untuk meneroka kemahiran baharu",
-      "Menggantikan kurikulum lama sepenuhnya",
-      "Memberi lebih banyak cuti kepada guru"
-    ],
-    correct: 1,
-    explanation: "Cara mengatasi kekurangan pemilikan adalah dengan melibatkan guru secara aktif dalam proses perubahan — memberi mereka autonomi untuk meneroka dan menyesuaikan kurikulum baharu mengikut konteks mereka."
-  },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "recall",
-    question: "Apakah yang perlu dilakukan untuk mengatasi masalah 'orang tidak mempunyai kecekapan untuk menghadapi perubahan'?",
-    options: [
-      "Mengurangkan skop kurikulum baharu",
-      "Masa dan sumber yang mencukupi mesti diperuntukkan untuk melatih guru",
-      "Menangguhkan pelaksanaan kurikulum baharu",
-      "Memilih guru yang lebih berkelayakan"
-    ],
-    correct: 1,
-    explanation: "Pembangunan profesional yang mencukupi — dengan masa dan sumber yang diperuntukkan — adalah kunci untuk membina kecekapan guru. Tanpa latihan yang mencukupi, guru tidak akan yakin untuk melaksanakan perubahan."
-  },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "critical",
-    question: "Mengapa ganjaran kewangan sahaja tidak mencukupi untuk memotivasikan guru melaksanakan perubahan?",
-    options: [
-      "Ganjaran kewangan melanggar etika profesion perguruan",
-      "Terdapat bukti bahawa motivasi luaran menyumbang secara minimum; individu menyumbang terbaik apabila bermotivasi dalaman",
-      "Kerajaan tidak mampu membayar ganjaran kewangan yang mencukupi",
-      "Guru tidak memerlukan wang kerana mereka sudah bergaji tetap"
-    ],
-    correct: 1,
-    explanation: "Penyelidikan motivasi (Deci & Ryan, teori penentuan kendiri) menunjukkan bahawa motivasi intrinsik — rasa bermakna, autonomi, dan kecekapan — lebih berkuasa daripada ganjaran ekstrinsik dalam memacu perubahan tingkah laku yang berkekalan."
-  },
-  {
-    topic: "T7: Pelaksanaan Kurikulum",
-    type: "recall",
-    question: "Menurut modul, apakah faktor ekstrinsik yang menghalang perubahan kurikulum di sekolah?",
-    options: [
-      "Sikap dan motivasi guru",
-      "Kecukupan sumber, masa, etos sekolah dan sokongan profesional",
-      "Kemahiran pengurusan bilik darjah guru",
-      "Pengetahuan guru tentang kandungan mata pelajaran"
-    ],
-    correct: 1,
-    explanation: "Faktor ekstrinsik (luaran) yang menghalang perubahan termasuk: kekurangan sumber (bahan, teknologi), masa yang tidak mencukupi, budaya sekolah yang tidak menyokong inovasi, dan kurangnya sokongan profesional dari pentadbir."
-  },
-  // ── BAHAGIAN D: MODEL PERUBAHAN LEWIN (Soalan 35–40) ───────────────
   {
     topic: "T7: Pelaksanaan & Lewin",
     type: "recall",
-    question: "Siapakah Kurt Lewin dan apakah gelaran yang diberikan kepadanya?",
+    question: "Kurt Lewin (1951) mencadangkan Model Medan Daya. Apakah gelaran yang diberikan kepadanya?",
     options: [
       "Bapa kurikulum moden",
-      "Bapa psikologi sosial",
       "Bapa pendidikan progresif",
-      "Bapa teori konstruktivisme"
+      "Bapa psikologi sosial",
+      "Bapa teori tingkah laku"
     ],
-    correct: 1,
-    explanation: "Kurt Lewin (1890–1947) digelar 'Bapa Psikologi Sosial' atas sumbangan beliau dalam memahami dinamik kumpulan, perubahan tingkah laku, dan penyelidikan tindakan. Model Medan Daya beliau sangat berpengaruh dalam pengurusan perubahan."
-  },
-  {
-    topic: "T7: Pelaksanaan & Lewin",
-    type: "recall",
-    question: "Pada tahun berapakah Kurt Lewin mencadangkan Model Medan Daya (Force Field Model)?",
-    options: ["1945", "1948", "1951", "1955"],
     correct: 2,
-    explanation: "Kurt Lewin mencadangkan Model Medan Daya pada tahun 1951. Model ini menganalisis daya penggerak (driving forces) dan daya penahan (restraining forces) yang mempengaruhi perubahan dalam sesebuah organisasi."
+    explanation: "Kurt Lewin digelar \'Bapa Psikologi Sosial\' atas sumbangan beliau dalam memahami dinamik kumpulan, kepimpinan, dan pengurusan perubahan. Model Medan Daya beliau sangat berpengaruh dalam pengurusan organisasi."
   },
   {
     topic: "T7: Pelaksanaan & Lewin",
     type: "recall",
-    question: "Menurut Lewin, apakah yang berlaku apabila daya penggerak (driving forces) dan daya penahan (restraining forces) adalah sama?",
+    question: "Dalam Model Lewin, apakah yang berlaku apabila daya penggerak (driving forces) dan daya penahan (restraining forces) berada dalam keadaan seimbang?",
     options: [
-      "Perubahan berlaku dengan pantas",
-      "Daya penggerak akan mengatasi daya penahan",
+      "Perubahan berlaku dengan cepat",
+      "Konflik berlaku antara kakitangan sekolah",
       "Status quo dikekalkan dan tiada usaha ke arah perubahan",
-      "Konflik berlaku di antara ahli-ahli kumpulan"
+      "Kurikulum baru dilaksanakan secara automatik"
     ],
     correct: 2,
-    explanation: "Apabila daya penggerak dan daya penahan berada dalam keseimbangan (equilibrium), status quo dikekalkan. Ini disebut 'quasi-stationary equilibrium' — keadaan kelihatan stabil tetapi sebenarnya dalam ketegangan dua hala."
-  },
-  {
-    topic: "T7: Pelaksanaan & Lewin",
-    type: "recall",
-    question: "Apakah contoh daya penahan (restraining forces) di tempat kerja menurut Model Lewin?",
-    options: [
-      "Tekanan daripada penyelia, insentif kewangan dan persaingan",
-      "Sikap acuh tak acuh, permusuhan dan peralatan usang",
-      "Arahan kerajaan dan dasar pendidikan baharu",
-      "Peluang kenaikan pangkat dan pengiktirafan profesional"
-    ],
-    correct: 1,
-    explanation: "Daya penahan menghalang perubahan — contohnya sikap acuh tak acuh pekerja, permusuhan terhadap perubahan, dan peralatan yang sudah lapuk. Ini berbeza daripada daya penggerak yang mendorong ke arah perubahan."
+    explanation: "Apabila kedua-dua daya berada dalam keseimbangan (quasi-stationary equilibrium), sistem kekal dalam keadaan status quo. Tiada perubahan berlaku kerana tiada daya yang mengatasi daya yang lain."
   },
   {
     topic: "T7: Pelaksanaan & Lewin",
     type: "critical",
-    question: "Lewin menekankan bahawa cara terbaik untuk memperkenalkan perubahan adalah dengan apakah?",
+    question: "Menurut Lewin, apakah strategi yang lebih baik untuk memperkenalkan perubahan dalam sesebuah organisasi?",
     options: [
-      "Meningkatkan daya penggerak sebanyak mungkin",
-      "Mengurangkan kuasa daya penahan daripada meningkatkan daya penggerak",
-      "Menggantikan semua pihak yang menentang perubahan",
-      "Melaksanakan perubahan secara mendadak dan menyeluruh"
+      "Meningkatkan daya penggerak sebanyak mungkin untuk memaksa perubahan",
+      "Mengurangkan kuasa daya penahan adalah lebih berkesan berbanding meningkatkan daya penggerak",
+      "Menggantikan semua kakitangan yang menentang perubahan",
+      "Melaksanakan perubahan secara mendadak dan menyeluruh dalam masa singkat"
     ],
     correct: 1,
-    explanation: "Lewin berpendapat bahawa mengurangkan daya penahan lebih berkesan daripada menambah daya penggerak. Meningkatkan daya penggerak tanpa mengurangkan penentangan akan mewujudkan ketegangan dan konflik yang lebih besar."
+    explanation: "Lewin berhujah bahawa menambah daya penggerak sahaja mewujudkan ketegangan tinggi. Mengurangkan daya penahan lebih berkesan — ia menghapuskan halangan tanpa meningkatkan konflik."
   },
   {
     topic: "T7: Pelaksanaan & Lewin",
     type: "recall",
-    question: "Menurut Model Lewin, apakah yang dimaksudkan dengan istilah 'tidak membeku' (unfreezing) dalam konteks perubahan?",
+    question: "Apakah yang dimaksudkan dengan proses \'tidak membeku\' (unfreezing) dalam Model Lewin?",
     options: [
-      "Proses pembekuan semula keadaan selepas perubahan berlaku",
-      "Pengurangan daya penahan untuk merangsang daya penggerak bagi mewujudkan perubahan",
-      "Proses memperkenalkan perubahan baharu kepada organisasi",
-      "Pemantauan pelaksanaan kurikulum baharu di sekolah"
+      "Proses membekukan semula keadaan selepas perubahan dilaksanakan sepenuhnya",
+      "Proses mengekalkan status quo dalam organisasi",
+      "Pengurangan kuasa daya penahan bagi merangsang daya penggerak supaya perubahan dapat berlaku",
+      "Proses memilih kakitangan baru untuk melaksanakan kurikulum"
     ],
-    correct: 1,
-    explanation: "Unfreezing adalah langkah pertama dalam model 3 fasa Lewin (Unfreeze → Change → Refreeze). Ia melibatkan pengurangan daya penahan dan persediaan mental untuk perubahan — mengalihkan sistem daripada keadaan status quo semasa."
+    correct: 2,
+    explanation: "Unfreezing adalah fasa pertama model 3 fasa Lewin: longgarkan keadaan semasa dengan mengurangkan daya penahan. Tanpa unfreezing yang berjaya, perubahan tidak akan diterima dan dikekalkan."
   }
 ];
+
 
 // ════════════════════════════════════════════════════════════════════════
 // STATE
@@ -7179,13 +7217,21 @@ function saveHistory(score) {
 function renderHistory() {
   const h = loadHistory();
   if (h.length < 1) return;
-  const strip = document.getElementById('historyStrip');
+  const strip  = document.getElementById('historyStrip');
   const scores = document.getElementById('historyScores');
-  const parts = h.map((s, i) => {
-    const arrow = i > 0 ? (s > h[i-1] ? '<span class="hs-arrow">↑</span>' : s < h[i-1] ? '<span class="hs-arrow" style="color:var(--rose)">↓</span>' : '<span class="hs-arrow" style="color:var(--muted)">→</span>') : '';
+  // Show last 5, but on narrow screens only last 3 look clean
+  const show = h.slice(-5);
+  const parts = show.map((s, i) => {
+    let arrow = '';
+    if (i > 0) {
+      const prev = show[i - 1];
+      if      (s > prev) arrow = '<span class="hs-arrow" style="color:var(--green)">↑</span>';
+      else if (s < prev) arrow = '<span class="hs-arrow" style="color:var(--rose)">↓</span>';
+      else               arrow = '<span class="hs-arrow" style="color:var(--muted)">→</span>';
+    }
     return `${arrow}<span class="hs-score">${s}/40</span>`;
   });
-  scores.innerHTML = parts.join(' ');
+  scores.innerHTML = parts.join('<span style="color:var(--muted);margin:0 1px;font-size:0.6rem"> </span>');
   strip.classList.add('show');
 }
 renderHistory();
@@ -8988,19 +9034,19 @@ const FLASH_CARDS = [
   { topic:"T8: Penilaian Kurikulum", q:"Apakah Model Wajah Stake dan 3 elemennya?", a:"Antecedents (sebelum program), Transactions (semasa program), Outcomes (selepas program).", explain:"Stake menilai keadaan awal, proses pengajaran, dan hasil akhir secara holistik." },
   { topic:"T9: Isu & Trend", q:"Apakah cabaran utama kurikulum akibat 'changing workplace' abad ke-21?", a:"Automasi & globalisasi menyebabkan kemahiran berubah pantas → kurikulum perlu sentiasa dikemas kini.", explain:"Kemahiran 4C: Critical thinking, Creativity, Collaboration, Communication menjadi tumpuan utama." },
   { topic:"T10: Arah Masa Depan", q:"Apakah 'penilaian prestasi' (performance assessment) dan mengapa ia lebih baik dari peperiksaan tradisional?", a:"Menilai pelajar melalui tugasan autentik (projek, demonstrasi, portfolio) yang mencerminkan kemahiran sebenar.", explain:"Peperiksaan tradisional hanya mengukur hafalan; penilaian prestasi menilai pemikiran aras tinggi." },
-  // ── Set 4: Model Tyler ──
-  { topic:"T5: Model Tyler", q:"Apakah 4 soalan asas Model Tyler dan tahun buku beliau?", a:"(1) Tujuan apa? (2) Pengalaman apa? (3) Bagaimana susun? (4) Bagaimana nilai? — 'Basic Principles of Curriculum and Instruction' (1949).", explain:"Model Tyler adalah model rasional-linear paling berpengaruh. Matlamat ditentukan dahulu, kemudian segala-galanya mengikutinya." },
-  { topic:"T5: Model Tyler", q:"Apakah dua 'skrin' yang menyaring objektif dalam Model Tyler?", a:"Skrin Falsafah (selaras dengan nilai sekolah) dan Skrin Psikologi (sesuai dengan tahap perkembangan pelajar).", explain:"Objektif yang lulus kedua-dua skrin ini dianggap relevan dan boleh dicapai oleh pelajar." },
-  { topic:"T5: Model Tyler", q:"Apakah 3 sumber utama objektif kurikulum menurut Tyler?", a:"(1) Kajian tentang pelajar, (2) Kajian tentang masyarakat semasa, (3) Cadangan pakar bidang subjek.", explain:"Ketiga-tiga sumber ini memastikan kurikulum relevan kepada individu, masyarakat, dan disiplin ilmu." },
-  { topic:"T5: Model Tyler", q:"Apakah kritikan utama terhadap Model Tyler?", a:"Terlalu linear (sebab-akibat), mengabaikan proses dinamik pembangunan kurikulum dan kreativiti guru.", explain:"Pengkritik seperti Eisner berpendapat kurikulum tidak boleh dirancang seperti kilang — ia memerlukan pertimbangan artistik." },
-  // ── Set 4: Reka Bentuk Kurikulum ──
-  { topic:"T6: Reka Bentuk Kurikulum", q:"Apakah perbezaan antara reka bentuk berpusatkan masalah dan berpusatkan pelajar?", a:"Masalah berpunca dari isu masyarakat (bukan minat peribadi pelajar) dalam reka bentuk berpusatkan masalah.", explain:"Reka bentuk berpusatkan pelajar bermula dari minat individu; reka bentuk masalah bermula dari keperluan sosial yang lebih luas." },
-  { topic:"T6: Reka Bentuk Kurikulum", q:"Apakah andaian reka bentuk humanistik (Carl Rogers) tentang peranan guru?", a:"Guru adalah fasilitator pembelajaran, bukan autoriti — memudahkan pelajar mencapai potensi penuh mereka.", explain:"Rogers percaya pembelajaran bermakna berlaku apabila pelajar berasa selamat, dihormati, dan diberi autonomi." },
-  { topic:"T6: Reka Bentuk Kurikulum", q:"Apakah konsep 'banking education' Paulo Freire dan penentangannya?", a:"'Banking education' = pelajar sebagai wadah kosong yang diisi guru. Freire menentangnya dengan pendidikan dialogik.", explain:"Freire mahu pelajar berfikir kritis tentang realiti mereka, bukan sekadar menerima pengetahuan secara pasif." },
-  // ── Set 4: Model Lewin ──
-  { topic:"T7: Pelaksanaan & Lewin", q:"Apakah 3 fasa Model Perubahan Lewin?", a:"(1) Unfreezing — longgarkan status quo, (2) Changing — laksanakan perubahan, (3) Refreezing — kukuhkan amalan baharu.", explain:"Unfreezing paling penting: tanpa persediaan mental dan emosi, perubahan tidak akan kekal." },
-  { topic:"T7: Pelaksanaan & Lewin", q:"Mengapa Lewin mencadangkan mengurangkan daya penahan berbanding menambah daya penggerak?", a:"Menambah daya penggerak tanpa mengurangkan penentangan mewujudkan ketegangan — mengurangkan penentangan lebih berkesan dan harmoni.", explain:"Analoginya: lebih mudah membuka kunci pintu (kurangkan halangan) daripada mendorong pintu bertambah kuat." },
-  { topic:"T7: Pelaksanaan & Lewin", q:"Apakah perbezaan antara 'lack of ownership' dan 'tidak faham perubahan' sebagai sebab penentangan?", a:"Lack of ownership = rasa perubahan dikenakan dari luar. Tidak faham = kurang maklumat tentang tujuan dan proses perubahan.", explain:"Penyelesaian berbeza: ownership diselesaikan dengan penglibatan; tidak faham diselesaikan dengan komunikasi 5W1H." },
+  // ── Set 4 v2: Falsafah Dunia ──
+  { topic:"T2: Asas Falsafah", q:"Apakah perbezaan antara Perenialisme dan Esensialisme?", a:"Perenialisme = idea abadi Plato/Aristotle + Great Books. Esensialisme = nilai moral tradisional + pengetahuan akademik teras, dipopularkan Bagley (1930-an).", explain:"Perenialisme lebih konservatif — universalisme abadi. Esensialisme lebih fleksibel — boleh dikemas kini mengikut keperluan semasa." },
+  { topic:"T2: Asas Falsafah", q:"Apakah sumbangan Al-Farabi dan Confucius kepada falsafah pendidikan?", a:"Al-Farabi: pemahaman > hafalan (makna universal > perincian). Confucius: belajar dan berfikir saling melengkapi — keduanya tidak boleh dipisahkan.", explain:"Kedua-duanya menekankan pembelajaran yang bermakna dan reflektif, bukan hafalan semata-mata." },
+  { topic:"T2: Asas Falsafah", q:"Apakah pendekatan Tagore di Santiniketan dan mengapa ia unik?", a:"Pembelajaran di alam terbuka + muzik, seni, drama, tarian sebagai teras — menolak bilik darjah tertutup dan peperiksaan berpusat.", explain:"Tagore percaya kreativiti dan alam semula jadi adalah asas perkembangan menyeluruh jiwa pelajar." },
+  // ── Set 4 v2: Psikologi ──
+  { topic:"T3: Asas Psikologi", q:"Apakah perbezaan antara Behaviourisme, Kognitivisme dan Konstruktivisme?", a:"Behaviourisme = tingkah laku boleh cerap. Kognitivisme = proses mental dalaman. Konstruktivisme (Piaget/Vygotsky/Bruner) = pelajar bina pengetahuan aktif.", explain:"Ketiga-tiga teori memberi implikasi berbeza: behaviourisme → ganjaran, kognitivisme → strategi berfikir, konstruktivisme → pembelajaran kolaboratif." },
+  { topic:"T3: Asas Psikologi", q:"Apakah tiga mekanisme Piaget dan siapa tiga tokoh humanistik utama?", a:"Piaget: Asimilasi, Akomodasi, Keseimbangan. Humanistik: Abraham Maslow, Carl Rogers, Arthur Combs.", explain:"Piaget fokus pada perkembangan kognitif individu; humanistik fokus pada keperluan, perasaan dan potensi manusia." },
+  // ── Set 4 v2: Model Pembangunan ──
+  { topic:"T5: Perancangan Kurikulum", q:"Apakah perbezaan model Tyler dan model Taba?", a:"Tyler (1949): deduktif — matlamat dulu. Taba: induktif (grass-roots) — guru bina unit pengajaran dahulu, bermula dari bawah.", explain:"Taba mempercayai guru lebih tahu keperluan pelajar daripada pentadbir — model akar umbi memberi autonomi kepada guru." },
+  { topic:"T5: Perancangan Kurikulum", q:"Apakah 4 domain Model Saylor, Alexander & Lewis dan 3 domain Taksonomi Bloom?", a:"SAL: Pembangunan peribadi, Perhubungan manusia, Kemahiran berterusan, Pengkhususan. Bloom: Kognitif, Afektif, Psikomotor.", explain:"Model SAL fokus pada matlamat menyeluruh; Taksonomi Bloom menyediakan rangka kerja untuk menulis objektif spesifik." },
+  // ── Set 4 v2: Pelaksanaan & Lewin ──
+  { topic:"T7: Pelaksanaan Kurikulum", q:"Apakah 5 jenis perubahan kurikulum McNeil (2014)?", a:"(1) Penggantian, (2) Pengubahan, (3) Gangguan, (4) Penstrukturan semula, (5) Orientasi nilai.", explain:"Setiap jenis berbeza dalam skop — dari perubahan kecil (penggantian bahan) hingga transformasi mendalam (orientasi nilai dan visi sekolah)." },
+  { topic:"T7: Pelaksanaan & Lewin", q:"Apakah model 3 fasa Lewin dan mengapa unfreezing paling penting?", a:"(1) Unfreezing — kurangkan daya penahan, (2) Changing — laksanakan perubahan, (3) Refreezing — kukuhkan amalan baru. Unfreezing paling kritikal kerana tanpanya perubahan ditolak.", explain:"Ramai gagal kerana melangkau unfreezing — cuba paksa perubahan tanpa persediaan emosi dan mental pihak yang terlibat." },
 ];
 
 // Piece color palette (colorful and distinct)
@@ -9056,30 +9102,64 @@ function flash_cancelQuit() {
 
 // ── Topic chips ────────────────────────────────────────────────────────
 function flash_buildTopicChips() {
-  const topics = [...new Set(FLASH_CARDS.map(c => c.topic))];
+  // Deduplicate topics by T-prefix (e.g. T5, T7) so Set 4 additions don't create duplicates
+  const allTopics = [...new Set(FLASH_CARDS.map(c => c.topic))];
+  const seenPrefixes = new Set();
+  const topics = allTopics.filter(t => {
+    const prefix = t.split(':')[0].trim();
+    if (seenPrefixes.has(prefix)) return false;
+    seenPrefixes.add(prefix);
+    return true;
+  });
+
+  // Build a prefix→all-matching-topics map so filtering works across merged topics
+  const prefixMap = {};
+  allTopics.forEach(t => {
+    const prefix = t.split(':')[0].trim();
+    if (!prefixMap[prefix]) prefixMap[prefix] = [];
+    prefixMap[prefix].push(t);
+  });
+
   const wrap = document.getElementById('flashTopicChips');
   wrap.innerHTML = '';
-  flash_activeTopics = new Set(topics);
+  flash_activeTopics = new Set(allTopics);
 
-  // All button — added first, onclick set after topicBtns is built
   const allBtn = document.createElement('button');
   allBtn.className = 'ftf-chip ftf-chip-all active';
   allBtn.textContent = '🌐 Semua Topik';
   wrap.appendChild(allBtn);
 
   const topicBtns = topics.map(t => {
+    const prefix = t.split(':')[0].trim();
     const btn = document.createElement('button');
     btn.className = 'ftf-chip active';
-    btn.textContent = t.split(':')[0].trim();
-    btn.title = t;
-    btn.dataset.topic = t;
-    btn.onclick = () => flash_toggleTopic(t, btn, allBtn, topics);
+    btn.textContent = prefix;
+    btn.title = prefixMap[prefix].join(', ');
+    btn.dataset.prefix = prefix;
+    btn.onclick = () => {
+      const relatedTopics = prefixMap[prefix];
+      const allActive = relatedTopics.every(rt => flash_activeTopics.has(rt));
+      if (allActive) {
+        relatedTopics.forEach(rt => flash_activeTopics.delete(rt));
+        btn.classList.remove('active');
+      } else {
+        relatedTopics.forEach(rt => flash_activeTopics.add(rt));
+        btn.classList.add('active');
+      }
+      if (flash_activeTopics.size === 0) flash_activeTopics = new Set(allTopics);
+      allBtn.classList.toggle('active', flash_activeTopics.size === allTopics.length);
+      flash_updateLandingCount();
+    };
     wrap.appendChild(btn);
     return btn;
   });
 
-  // Now safe to reference topicBtns in closure
-  allBtn.onclick = () => flash_selectAllTopics(topics, allBtn, topicBtns);
+  allBtn.onclick = () => {
+    flash_activeTopics = new Set(allTopics);
+    allBtn.classList.add('active');
+    topicBtns.forEach(b => b.classList.add('active'));
+    flash_updateLandingCount();
+  };
 }
 
 function flash_selectAllTopics(topics, allBtn, topicBtns) {
@@ -9419,25 +9499,23 @@ const MATCH_ROUNDS = [
     { term: "Kemahiran 4C", defn: "Critical thinking, Creativity, Collaboration, Communication — abad ke-21" },
     { term: "Pendidikan pampasan", defn: "Program mengurangkan jurang pencapaian pelajar dari latar belakang berbeza" },
   ]},
-  // Round 4 — Set 4: Model Tyler & Lewin
-  { title: "Model Tyler, Reka Bentuk & Lewin (Set 4)", pairs: [
-    { term: "4 soalan Tyler", defn: "Tujuan → Pengalaman → Susun atur → Penilaian" },
-    { term: "Skrin falsafah & psikologi", defn: "Dua penapis objektif dalam Model Tyler" },
-    { term: "3 sumber objektif Tyler", defn: "Pelajar, masyarakat, dan bidang subjek" },
-    { term: "Reka bentuk bidang luas", defn: "Juga dikenali sebagai reka bentuk antara disiplin" },
-    { term: "Paulo Freire", defn: "Menentang 'banking education' — pelajar bukan wadah kosong" },
-    { term: "Carl Rogers", defn: "Pengasas reka bentuk humanistik — guru sebagai fasilitator" },
-    { term: "Kurt Lewin (1951)", defn: "Model Medan Daya — Bapa Psikologi Sosial" },
-    { term: "Unfreezing (Lewin)", defn: "Pengurangan daya penahan untuk merangsang perubahan" },
+  // Round 4 — Set 4 v2: Falsafah & Tokoh Dunia
+  { title: "Falsafah & Tokoh Dunia (Set 4)", pairs: [
+    { term: "Perenialisme", defn: "Paling konservatif — berakar umbi falsafah Plato & Aristotle, idea-idea abadi" },
+    { term: "Program 'Great Books'", defn: "Ciri kurikulum perenialisme — Hutchins & Adler" },
+    { term: "William Bagley", defn: "Mempopularkan esensialisme pada 1930-an — pengetahuan teras & nilai tradisional" },
+    { term: "Theodore Brameld", defn: "Tokoh utama rekonstruksionisme — sekolah sebagai agen reformasi masyarakat" },
+    { term: "Al-Farabi", defn: "Pemahaman > hafalan — melibatkan makna universal yang sah untuk semua" },
+    { term: "Tagore / Santiniketan", defn: "Pembelajaran alam terbuka + muzik, seni, drama sebagai teras kurikulum" },
   ]},
-  // Round 5 — Set 4: Penentangan & Reka Bentuk
-  { title: "Penentangan Perubahan & Reka Bentuk Kurikulum", pairs: [
-    { term: "Lack of ownership", defn: "Penentangan kerana perubahan dirasakan dikenakan dari luar" },
-    { term: "Motivasi intrinsik", defn: "Lebih berkuasa daripada ganjaran kewangan untuk kekal berubah" },
-    { term: "Jean-Jacques Rousseau", defn: "Penyokong awal kurikulum berpusatkan kanak-kanak melalui 'Emile'" },
-    { term: "Kaedah projek", defn: "Strategi pedagogi utama reka bentuk berpusatkan kanak-kanak" },
-    { term: "Reka bentuk teras", defn: "Masalah tertentu dipilih & diajar kepada semua pelajar dalam blok masa" },
-    { term: "Daya penahan (Lewin)", defn: "Sikap acuh tak acuh, permusuhan & peralatan usang di tempat kerja" },
+  // Round 5 — Set 4 v2: Psikologi & Model Pembangunan
+  { title: "Psikologi & Model Pembangunan Kurikulum", pairs: [
+    { term: "Behaviourisme", defn: "Hanya mengkaji tingkah laku yang boleh diperhatikan — proses mental diabaikan" },
+    { term: "Asimilasi, Akomodasi, Keseimbangan", defn: "Tiga mekanisme pembinaan pengetahuan Piaget dalam konstruktivisme" },
+    { term: "Maslow, Rogers & Combs", defn: "Tiga tokoh utama psikologi humanistik dalam pendidikan" },
+    { term: "Model Taba (grass-roots)", defn: "Induktif — guru bina unit pengajaran dahulu, bermula dari bawah ke atas" },
+    { term: "4 domain Saylor et al.", defn: "Pembangunan peribadi, perhubungan manusia, pembelajaran berterusan, pengkhususan" },
+    { term: "5 jenis perubahan McNeil", defn: "Penggantian, pengubahan, gangguan, penstrukturan semula, orientasi nilai" },
   ]},
 ];
 
